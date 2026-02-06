@@ -11,6 +11,27 @@ export default defineConfig({
 			customCss: [
 				'./src/styles/custom.css',
 			],
+			head: [
+				{
+					tag: 'script',
+					attrs: {
+						src: 'https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js',
+						defer: true,
+					},
+				},
+				{
+					tag: 'script',
+					content: `
+						document.addEventListener('DOMContentLoaded', function() {
+							mediumZoom('.sl-markdown-content img:not(.site-title img)', {
+								margin: 24,
+								background: 'var(--sl-color-bg)',
+								scrollOffset: 0,
+							});
+						});
+					`,
+				},
+			],
 			social: [
 				{ icon: 'email', label: 'Support', href: 'mailto:support@easybiller.com' },
 			],

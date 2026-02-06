@@ -776,6 +776,108 @@ const batches = {
       clickBtn: 'button:has-text("Money In"), button:has-text("Record Payment"), button:has-text("Add Payment")',
       delay: 1500
     });
+  },
+
+  // Batch 12: Notification Settings
+  'batch12': async (page) => {
+    await login(page);
+
+    // Navigate to company settings / notifications area
+    await page.goto(`${TARGET_URL}/company/list?docs_mode=true`, { waitUntil: 'domcontentloaded', timeout: 30000 });
+    await page.waitForTimeout(2000);
+    const companyRow = await page.$('mat-row:first-child, tr[mat-row]:first-child, .mat-mdc-row:first-child');
+    if (companyRow) {
+      await companyRow.click();
+      try { await page.waitForLoadState('networkidle', { timeout: 8000 }); } catch(e) {}
+      await page.waitForTimeout(1500);
+
+      // Try to navigate to notifications tab/section
+      const notifTab = await page.$('[role="tab"]:has-text("Notification"), .mat-mdc-tab:has-text("Notification"), a:has-text("Notification")');
+      if (notifTab) {
+        await notifTab.click();
+        await page.waitForTimeout(1500);
+        try { await page.waitForLoadState('networkidle', { timeout: 8000 }); } catch(e) {}
+      }
+
+      // SMS config section
+      const smsSection = await page.$('[class*="sms"], [id*="sms"], mat-expansion-panel:has-text("SMS"), mat-card:has-text("SMS")');
+      if (smsSection) {
+        await smsSection.scrollIntoViewIfNeeded();
+        await page.waitForTimeout(500);
+      }
+      await maskPII(page);
+      await page.screenshot({ path: path.join(OUTPUT_DIR, 'notifications-sms-config.png') });
+      console.log('  ✅ Saved: notifications-sms-config.png');
+
+      // Email config section
+      const emailSection = await page.$('[class*="email"], [id*="email"], mat-expansion-panel:has-text("Email"), mat-card:has-text("Email")');
+      if (emailSection) {
+        await emailSection.scrollIntoViewIfNeeded();
+        await page.waitForTimeout(500);
+      }
+      await maskPII(page);
+      await page.screenshot({ path: path.join(OUTPUT_DIR, 'notifications-email-config.png') });
+      console.log('  ✅ Saved: notifications-email-config.png');
+
+      // Notification log
+      const logTab = await page.$('[role="tab"]:has-text("Log"), .mat-mdc-tab:has-text("Log"), [role="tab"]:has-text("History"), .mat-mdc-tab:has-text("History")');
+      if (logTab) {
+        await logTab.click();
+        await page.waitForTimeout(1500);
+        try { await page.waitForLoadState('networkidle', { timeout: 8000 }); } catch(e) {}
+        await maskPII(page);
+        await page.screenshot({ path: path.join(OUTPUT_DIR, 'notifications-log.png') });
+        console.log('  ✅ Saved: notifications-log.png');
+      } else {
+        console.warn('  ⚠️ Notification log tab not found');
+      }
+    } else {
+      console.warn('  ⚠️ No company found for notification settings capture');
+    }
+  },
+
+  // Batch 13: Lease Management (Real Estate)
+  'batch13': async (page) => {
+    await login(page);
+    await switchCompany(page, 'Real Estate');
+
+    // Navigate to tenants list and open a tenant to see leases
+    await page.goto(`${TARGET_URL}/tenants?docs_mode=true`, { waitUntil: 'domcontentloaded', timeout: 30000 });
+    await page.waitForTimeout(2000);
+    const tenantRow = await page.$('mat-row:first-child, tr[mat-row]:first-child, .mat-mdc-row:first-child');
+    if (tenantRow) {
+      await tenantRow.click();
+      try { await page.waitForLoadState('networkidle', { timeout: 8000 }); } catch(e) {}
+      await page.waitForTimeout(1500);
+
+      // Navigate to Leases tab
+      const leasesTab = await page.$('[role="tab"]:has-text("Lease"), .mat-mdc-tab:has-text("Lease")');
+      if (leasesTab) {
+        await leasesTab.click();
+        await page.waitForTimeout(1500);
+        try { await page.waitForLoadState('networkidle', { timeout: 8000 }); } catch(e) {}
+        await maskPII(page);
+        await page.screenshot({ path: path.join(OUTPUT_DIR, 'lease-detail.png') });
+        console.log('  ✅ Saved: lease-detail.png');
+
+        // Try to click Renew button to capture renewal form
+        const renewBtn = await page.$('button:has-text("Renew"), a:has-text("Renew")');
+        if (renewBtn) {
+          await renewBtn.click();
+          await page.waitForTimeout(1500);
+          try { await page.waitForLoadState('networkidle', { timeout: 8000 }); } catch(e) {}
+          await maskPII(page);
+          await page.screenshot({ path: path.join(OUTPUT_DIR, 'lease-renewal-form.png') });
+          console.log('  ✅ Saved: lease-renewal-form.png');
+        } else {
+          console.warn('  ⚠️ Renew button not found on lease detail');
+        }
+      } else {
+        console.warn('  ⚠️ Leases tab not found on tenant detail');
+      }
+    } else {
+      console.warn('  ⚠️ No tenant found for lease capture');
+    }
   }
 };
 
