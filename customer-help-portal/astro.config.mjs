@@ -16,13 +16,16 @@ export default defineConfig({
 					tag: 'script',
 					attrs: {
 						src: 'https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js',
+						integrity: 'sha512-XBdaEpY0U3VXkwEzRUhS7Xa2WDfoCeXNUN2MjjjBl+KXLFkisMNR9EMGKlXislhRnFzScpD4Sjy3IHKPMPOQ7w==',
+						crossorigin: 'anonymous',
 						defer: true,
 					},
 				},
 				{
 					tag: 'script',
 					content: `
-						document.addEventListener('DOMContentLoaded', function() {
+						window.addEventListener('DOMContentLoaded', function() {
+							if (typeof mediumZoom === 'undefined') return;
 							mediumZoom('.sl-markdown-content img:not(.site-title img)', {
 								margin: 24,
 								background: 'var(--sl-color-bg)',
