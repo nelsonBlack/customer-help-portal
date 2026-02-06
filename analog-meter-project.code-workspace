@@ -1,0 +1,29 @@
+{
+  "folders": [
+	{
+		"path": "analog-meter-project"
+	},
+	{
+		"path": "realator_backend"
+	},
+	{
+		"path": "frontend-analog-meter-project"
+	},
+	{
+		"path": "easybill"
+	},
+	{
+		"path": "new_data"
+	},
+	{
+		"path": "docs"
+	},
+	{
+		"path": "api.frebazeth.com"
+	}
+],
+"settings": {
+	"ndjson.port": 7242,
+	"vsicons.presets.angular": true
+}
+}

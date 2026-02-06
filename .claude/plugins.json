@@ -1,0 +1,233 @@
+{
+  "version": 1,
+  "lastUpdated": 1768265715110,
+  "plugins": [
+    {
+      "filename": "code-reviewer.md",
+      "type": "agent",
+      "metadata": {
+        "sourcePath": "agents/development-tools/code-reviewer.md",
+        "filename": "code-reviewer.md",
+        "name": "code-reviewer",
+        "description": "Expert code review specialist for quality, security, and maintainability. Use PROACTIVELY after writing or modifying code to ensure high development standards.",
+        "tools": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash",
+          "Grep"
+        ],
+        "category": "development-tools",
+        "type": "agent",
+        "size": 883,
+        "contentHash": "f03e91d73b34ce7939edac0a4e5acada77ed499e2d8959c275e295f3f0902481",
+        "installedAt": 1768178722094,
+        "updatedAt": 1768178722094
+      }
+    },
+    {
+      "filename": "flutter-go-reviewer.md",
+      "type": "agent",
+      "metadata": {
+        "sourcePath": "agents/development-tools/flutter-go-reviewer.md",
+        "filename": "flutter-go-reviewer.md",
+        "name": "flutter-go-reviewer",
+        "description": "Use this agent when you need to review code changes in a pull request or after writing/modifying code. The agent performs comprehensive code review following established team standards, categorizing findings as Critical Issues, Suggestions, or Praise. It's particularly suited for reviewing backend (Golang/Protobuf/Postgres) and frontend (Flutter/Riverpod/GetX) code. Examples:\n\n<example>\nContext: After implementing a new API endpoint\nuser: \"I've added a new user profile update endpoint\"\nassistant: \"I'll review the code changes for the new endpoint\"\n<commentary>\nSince new code was written, use the flutter-go-reviewer agent to ensure it meets quality standards.\n</commentary>\nassistant: \"Let me use the flutter-go-reviewer agent to review this implementation\"\n</example>\n\n<example>\nContext: After modifying database schema\nuser: \"I've updated the schema to add a new column to the users table\"\nassistant: \"I'll review these database changes\"\n<commentary>\nDatabase schema changes require careful review for backward compatibility and migration safety.\n</commentary>\nassistant: \"I'll launch the flutter-go-reviewer agent to check these schema modifications\"\n</example>\n\n<example>\nContext: After refactoring existing code\nuser: \"I've refactored the payment processing module to improve performance\"\nassistant: \"Let me review the refactored code\"\n<commentary>\nRefactoring requires review to ensure functionality is preserved while improvements are validated.\n</commentary>\nassistant: \"I'll use the flutter-go-reviewer agent to review this refactoring\"\n</example>\n",
+        "tools": [
+          "Glob",
+          "Grep",
+          "Read",
+          "WebFetch",
+          "TodoWrite",
+          "WebSearch",
+          "BashOutput",
+          "KillBash",
+          "ListMcpResourcesTool",
+          "ReadMcpResourceTool"
+        ],
+        "category": "development-tools",
+        "type": "agent",
+        "size": 6750,
+        "contentHash": "008a2f22af8c8530ca7da5d194dd53f3b946b2970b7ad63eae928b6e354f3108",
+        "installedAt": 1768178728528,
+        "updatedAt": 1768178728528
+      }
+    },
+    {
+      "filename": "database-admin.md",
+      "type": "agent",
+      "metadata": {
+        "sourcePath": "agents/database/database-admin.md",
+        "filename": "database-admin.md",
+        "name": "database-admin",
+        "description": "Database administration specialist for operations, backups, replication, and monitoring. Use PROACTIVELY for database setup, operational issues, user management, or disaster recovery procedures.",
+        "tools": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash"
+        ],
+        "category": "database",
+        "type": "agent",
+        "size": 1244,
+        "contentHash": "8263997db1eb64a9a41f24ab5e47190414fc90c45ff0152bcef041901f44bad2",
+        "installedAt": 1768178777302,
+        "updatedAt": 1768178777302
+      }
+    },
+    {
+      "filename": "database-optimizer.md",
+      "type": "agent",
+      "metadata": {
+        "sourcePath": "agents/database/database-optimizer.md",
+        "filename": "database-optimizer.md",
+        "name": "database-optimizer",
+        "description": "SQL query optimization and database schema design specialist. Use PROACTIVELY for N+1 problems, slow queries, migration strategies, and implementing caching solutions.",
+        "tools": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash"
+        ],
+        "category": "database",
+        "type": "agent",
+        "size": 1175,
+        "contentHash": "197a5ca1ceba74c095b44c05ad2b74669812f780f2ec94d9a16acf7336938a5c",
+        "installedAt": 1768178793879,
+        "updatedAt": 1768178793879
+      }
+    },
+    {
+      "filename": "database-architect.md",
+      "type": "agent",
+      "metadata": {
+        "sourcePath": "agents/database/database-architect.md",
+        "filename": "database-architect.md",
+        "name": "database-architect",
+        "description": "Database architecture and design specialist. Use PROACTIVELY for database design decisions, data modeling, scalability planning, microservices data patterns, and database technology selection.",
+        "tools": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash"
+        ],
+        "category": "database",
+        "type": "agent",
+        "size": 21336,
+        "contentHash": "752f912e5584803917cdfed51bbfbd7ff2ab6608476e71853394c93c3553324c",
+        "installedAt": 1768178796679,
+        "updatedAt": 1768178796679
+      }
+    },
+    {
+      "filename": "backend-architect.md",
+      "type": "agent",
+      "metadata": {
+        "sourcePath": "agents/development-team/backend-architect.md",
+        "filename": "backend-architect.md",
+        "name": "backend-architect",
+        "description": "Backend system architecture and API design specialist. Use PROACTIVELY for RESTful APIs, microservice boundaries, database schemas, scalability planning, and performance optimization.",
+        "tools": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash"
+        ],
+        "category": "development-team",
+        "type": "agent",
+        "size": 1236,
+        "contentHash": "c1c2182d062228507390bcf9d9e96d18918c5bd97d0177f1ab0abd2ef85c1b98",
+        "installedAt": 1768178800878,
+        "updatedAt": 1768178800878
+      }
+    },
+    {
+      "filename": "frontend-developer.md",
+      "type": "agent",
+      "metadata": {
+        "sourcePath": "agents/development-team/frontend-developer.md",
+        "filename": "frontend-developer.md",
+        "name": "frontend-developer",
+        "description": "Frontend development specialist for React applications and responsive design. Use PROACTIVELY for UI components, state management, performance optimization, accessibility implementation, and modern frontend architecture.",
+        "tools": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash"
+        ],
+        "category": "development-team",
+        "type": "agent",
+        "size": 1318,
+        "contentHash": "7247ea7bda89e2c7e6703f1b983117b5d5e8ae055cd180987c9527d25ea5641f",
+        "installedAt": 1768178808906,
+        "updatedAt": 1768178808906
+      }
+    },
+    {
+      "filename": "fullstack-developer.md",
+      "type": "agent",
+      "metadata": {
+        "sourcePath": "agents/development-team/fullstack-developer.md",
+        "filename": "fullstack-developer.md",
+        "name": "fullstack-developer",
+        "description": "Full-stack development specialist covering frontend, backend, and database technologies. Use PROACTIVELY for end-to-end application development, API integration, database design, and complete feature implementation.",
+        "tools": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash"
+        ],
+        "category": "development-team",
+        "type": "agent",
+        "size": 32301,
+        "contentHash": "6a226fccc47e93849e3168832692500df362897d202e7fb4a423c3341dc05f68",
+        "installedAt": 1768178810173,
+        "updatedAt": 1768178810173
+      }
+    },
+    {
+      "filename": "graphql-performance-optimizer.md",
+      "type": "agent",
+      "metadata": {
+        "sourcePath": "agents/api-graphql/graphql-performance-optimizer.md",
+        "filename": "graphql-performance-optimizer.md",
+        "name": "graphql-performance-optimizer",
+        "description": "GraphQL performance analysis and optimization specialist. Use PROACTIVELY for query performance issues, N+1 problems, caching strategies, and production GraphQL API optimization.",
+        "tools": [
+          "Read",
+          "Write",
+          "Bash",
+          "Grep"
+        ],
+        "category": "api-graphql",
+        "type": "agent",
+        "size": 9827,
+        "contentHash": "c86ba9589a2798d076b5ef26927329fe5f4122cf03882bb0f5de5a02d2fd2df1",
+        "installedAt": 1768265711983,
+        "updatedAt": 1768265711983
+      }
+    },
+    {
+      "filename": "graphql-security-specialist.md",
+      "type": "agent",
+      "metadata": {
+        "sourcePath": "agents/api-graphql/graphql-security-specialist.md",
+        "filename": "graphql-security-specialist.md",
+        "name": "graphql-security-specialist",
+        "description": "GraphQL API security and authorization specialist. Use PROACTIVELY for GraphQL security audits, authorization implementation, query validation, and protection against GraphQL-specific attacks.",
+        "tools": [
+          "Read",
+          "Write",
+          "Bash",
+          "Grep"
+        ],
+        "category": "api-graphql",
+        "type": "agent",
+        "size": 13070,
+        "contentHash": "19557290e9754c605163fcc813d32343408933897211652ca78f7d9e7f29d32c",
+        "installedAt": 1768265715110,
+        "updatedAt": 1768265715110
+      }
+    }
+  ]
+}

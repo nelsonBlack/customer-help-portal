@@ -1,0 +1,6 @@
+propertyName,unitNumber,unitType,unitLevel,bedrooms,bathrooms,customerFirstName,customerLastName,customerPhone,customerEmail,baseRent,rentFrequency,startDate,meterNumber,initialReading,waterPricePerUnit
+Kite Estate,hse1,apartment,ground,1,1,John,Doe,+254712345678,john@email.com,11200,monthly,2026-01-10,MTR-001,100,50
+Kite Estate,hse2,studio,first,0,1,Jane,Smith,+254712345679,jane@email.com,9500,monthly,2026-01-10,MTR-002,150,50
+Kite Estate,hse3,apartment,second,2,2,,,,,,,,,
+Kite Estate,hse4,apartment,ground,1,1,Bob,Johnson,+254712345680,bob@email.com,15000,monthly,2026-01-15,,,
+Umma Estate,,,,,,,,,,,,,,
