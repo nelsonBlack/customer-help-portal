@@ -7,6 +7,8 @@ import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
 
 Getting paid is the whole point. EasyBiller supports both automatic M-Pesa reconciliation and manual payment recording, giving you flexibility to handle whatever payment methods your customers prefer. This guide covers the full payment lifecycle — from setup to reconciliation and troubleshooting.
 
+![The Payments page showing transaction records](../../../assets/guides/payments-list.png)
+
 ## M-Pesa payment setup
 
 M-Pesa is the dominant payment method for water utilities in Kenya and increasingly across East Africa. EasyBiller integrates directly with Safaricom's M-Pesa API to automatically match incoming payments to customer accounts.
@@ -92,6 +94,8 @@ Not every payment matches perfectly. Here is how the system handles edge cases:
 
 ### Managing unallocated payments
 
+![Payment detail showing transaction information](../../../assets/guides/payment-detail.png)
+
 <Steps>
 
 1. Go to **Payments > Unallocated**.
@@ -115,6 +119,8 @@ Check unallocated payments daily during billing periods. Customers who pay corre
 Not all customers pay via M-Pesa. For cash payments, bank transfers, and other offline methods, you record them manually.
 
 ### Step-by-step: Recording a payment
+
+![The failed payments tab showing unprocessed transactions](../../../assets/guides/payments-failed-tab.png)
 
 <Steps>
 

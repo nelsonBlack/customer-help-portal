@@ -7,6 +7,8 @@ import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
 
 Meter readings are the raw input that drives your entire billing process. An accurate reading produces an accurate bill. A missed or wrong reading creates disputes, lost revenue, and frustrated customers. This guide covers how to capture readings from the web dashboard, handle anomalies, and connect with field teams using the EasyBill mobile app.
 
+![The Meter Readings page showing recent readings by customer](../../../assets/guides/meter-readings-list.png)
+
 ## The reading workflow
 
 Every reading in EasyBiller follows the same basic flow:
@@ -19,6 +21,8 @@ Every reading in EasyBiller follows the same basic flow:
 That is it at its core. The rest of this guide covers the details that make readings accurate and efficient at scale.
 
 ## Entering a single reading
+
+![The meter reading entry form](../../../assets/guides/meter-reading-add-form.png)
 
 <Steps>
 
@@ -57,6 +61,8 @@ Here is what each field on the reading form means and why it matters:
 | **Photo** | Image of the meter dial | Optional |
 | **Notes** | Freeform notes about the reading | Optional |
 | **Reading Date** | Date the reading was taken (defaults to today) | Editable |
+
+![A completed meter reading showing consumption details](../../../assets/guides/meter-reading-detail.png)
 
 :::tip
 If the **reading date** differs from today — for example, if a field agent captured the reading yesterday but is entering it today — change the date to reflect when the reading was actually taken. Accurate dates matter for billing period calculations.
@@ -156,6 +162,8 @@ Never change a correct reading just because it triggered an anomaly flag. The fl
 </Tabs>
 
 ## Batch reading entry
+
+![Meter readings list with filters applied](../../../assets/guides/meter-readings-filtered.png)
 
 When you need to enter many readings at once — for example, after a field team returns from a reading round — batch entry is faster than entering them one by one.
 
