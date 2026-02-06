@@ -6,13 +6,13 @@ import starlight from '@astrojs/starlight';
 export default defineConfig({
 	integrations: [
 		starlight({
-			title: 'Analog Water Help Center',
-			description: 'Guides and documentation for the Analog Water platform — water billing, property management, and field operations.',
+			title: 'EasyBiller Help Center',
+			description: 'Guides and documentation for the EasyBiller platform — water billing, property management, and field operations.',
 			customCss: [
 				'./src/styles/custom.css',
 			],
 			social: [
-				{ icon: 'email', label: 'Support', href: 'mailto:support@analogwater.com' },
+				{ icon: 'email', label: 'Support', href: 'mailto:support@easybiller.com' },
 			],
 			editLink: {
 				baseUrl: 'https://github.com/nelsonBlack/customer-help-portal/edit/main/',

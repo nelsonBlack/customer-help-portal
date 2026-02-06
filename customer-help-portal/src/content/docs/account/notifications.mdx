@@ -5,7 +5,7 @@ description: Configure SMS and email notifications — triggers, templates, API 
 
 import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
 
-Notifications keep your customers informed about their bills and payments, and alert your team about operational events like reading anomalies or overdue accounts. Analog Water supports **SMS** (via Africa's Talking) and **email** notifications.
+Notifications keep your customers informed about their bills and payments, and alert your team about operational events like reading anomalies or overdue accounts. EasyBiller supports **SMS** (via Africa's Talking) and **email** notifications.
 
 This guide covers how to set up notification channels, configure triggers, customize templates, and test delivery.
 
@@ -13,7 +13,7 @@ This guide covers how to set up notification channels, configure triggers, custo
 
 ### SMS via Africa's Talking
 
-SMS is the most reliable way to reach customers in East Africa, where many users have basic phones without email access. Analog Water integrates with [Africa's Talking](https://africastalking.com/) for SMS delivery.
+SMS is the most reliable way to reach customers in East Africa, where many users have basic phones without email access. EasyBiller integrates with [Africa's Talking](https://africastalking.com/) for SMS delivery.
 
 #### Setting up Africa's Talking
 
@@ -26,7 +26,7 @@ If you have not yet connected your Africa's Talking account, follow these steps:
 
   3. **Register a Sender ID** (optional but recommended). A Sender ID is the name that appears as the sender on your customers' phones (for example, "MajiWater" instead of a random short code). Apply for one in the Africa's Talking dashboard under **SMS > Sender IDs**. Approval typically takes 2 to 5 business days.
 
-  4. **Enter credentials in Analog Water.** Go to **Settings > Company Settings > Notifications > SMS** and enter:
+  4. **Enter credentials in EasyBiller.** Go to **Settings > Company Settings > Notifications > SMS** and enter:
      - **Username** — your Africa's Talking username
      - **API Key** — your Africa's Talking API key
      - **Sender ID** — your approved sender name, or leave blank to use the default short code
@@ -47,12 +47,12 @@ Before enabling SMS notifications for your customers, send a test message:
 </Steps>
 
 :::tip[Test on sandbox first]
-Africa's Talking provides a sandbox environment for testing without consuming your SMS balance. In the Africa's Talking dashboard, switch to "Sandbox" mode, generate sandbox credentials, and use those in Analog Water temporarily. Switch back to production credentials when you are ready to go live.
+Africa's Talking provides a sandbox environment for testing without consuming your SMS balance. In the Africa's Talking dashboard, switch to "Sandbox" mode, generate sandbox credentials, and use those in EasyBiller temporarily. Switch back to production credentials when you are ready to go live.
 :::
 
 ### Email notifications
 
-Email notifications are handled by Analog Water's infrastructure. You do not need to configure an SMTP server.
+Email notifications are handled by EasyBiller's infrastructure. You do not need to configure an SMTP server.
 
 <Steps>
   1. Go to **Settings > Company Settings > Notifications > Email**.
@@ -61,7 +61,7 @@ Email notifications are handled by Analog Water's infrastructure. You do not nee
   4. Click **"Save"**.
 </Steps>
 
-Emails are sent from a `noreply@analogwater.com` address with your configured "From name" in the display field.
+Emails are sent from a `noreply@easybiller.com` address with your configured "From name" in the display field.
 
 ## Notification triggers
 
@@ -228,7 +228,7 @@ After testing with sample data, generate a bill for a test customer with notific
 |---|---|
 | **Spam folder** | Ask the recipient to check their spam or junk folder. |
 | **Incorrect email address** | Verify the customer's email address in their profile. |
-| **Domain blocking** | Some corporate email servers block unknown senders. Ask the recipient's IT team to whitelist `analogwater.com`. |
+| **Domain blocking** | Some corporate email servers block unknown senders. Ask the recipient's IT team to whitelist `easybiller.com`. |
 
 ### Notifications enabled but not sending
 

@@ -1,6 +1,6 @@
 ---
 title: Capturing Meter Readings
-description: Record meter readings from the Analog Water dashboard — single entries, batch readings, anomaly handling, and integration with the EasyBill mobile app.
+description: Record meter readings from the EasyBiller dashboard — single entries, batch readings, anomaly handling, and integration with the EasyBill mobile app.
 ---
 
 import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
@@ -9,7 +9,7 @@ Meter readings are the raw input that drives your entire billing process. An acc
 
 ## The reading workflow
 
-Every reading in Analog Water follows the same basic flow:
+Every reading in EasyBiller follows the same basic flow:
 
 1. **Select the customer** whose meter you are reading.
 2. **Enter the current reading** from the meter dial.
@@ -92,7 +92,7 @@ Photos of meter dials serve as evidence in case of disputes and help verify read
 
 ## Handling anomalies
 
-Analog Water automatically flags readings that appear unusual based on the customer's historical consumption patterns. This is the **anomaly detection** system.
+EasyBiller automatically flags readings that appear unusual based on the customer's historical consumption patterns. This is the **anomaly detection** system.
 
 ### What triggers an anomaly flag
 
@@ -239,7 +239,7 @@ Report any of these signs immediately so the maintenance team can investigate.
 
 ## Connection to EasyBill mobile app
 
-For field-based reading capture, Analog Water integrates with the **EasyBill** mobile app. The app allows field agents to:
+For field-based reading capture, EasyBiller integrates with the **EasyBill** mobile app. The app allows field agents to:
 
 - **View assigned customers** organized by reading route
 - **Enter readings** on their phone while at the meter
@@ -257,14 +257,14 @@ For field-based reading capture, Analog Water integrates with the **EasyBill** m
 
 3. **At each meter**, the agent enters the reading and takes a photo. The app shows the previous reading and auto-calculates consumption — flagging anomalies in real time.
 
-4. **Readings sync** to the Analog Water dashboard automatically when the device has connectivity. Offline readings are queued and uploaded when the agent is back online.
+4. **Readings sync** to the EasyBiller dashboard automatically when the device has connectivity. Offline readings are queued and uploaded when the agent is back online.
 
 5. **Dashboard operators review** synced readings and handle any flagged anomalies.
 
 </Steps>
 
 :::note
-The EasyBill mobile app is available for Android devices. Contact your Analog Water account representative for setup instructions and agent licenses.
+The EasyBill mobile app is available for Android devices. Contact your EasyBiller account representative for setup instructions and agent licenses.
 :::
 
 ## Next steps

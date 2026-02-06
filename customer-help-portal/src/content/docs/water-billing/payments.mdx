@@ -1,15 +1,15 @@
 ---
 title: Recording Payments
-description: Set up M-Pesa integration, record manual payments, handle reconciliation, manage credits, and troubleshoot common payment issues in Analog Water.
+description: Set up M-Pesa integration, record manual payments, handle reconciliation, manage credits, and troubleshoot common payment issues in EasyBiller.
 ---
 
 import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
 
-Getting paid is the whole point. Analog Water supports both automatic M-Pesa reconciliation and manual payment recording, giving you flexibility to handle whatever payment methods your customers prefer. This guide covers the full payment lifecycle — from setup to reconciliation and troubleshooting.
+Getting paid is the whole point. EasyBiller supports both automatic M-Pesa reconciliation and manual payment recording, giving you flexibility to handle whatever payment methods your customers prefer. This guide covers the full payment lifecycle — from setup to reconciliation and troubleshooting.
 
 ## M-Pesa payment setup
 
-M-Pesa is the dominant payment method for water utilities in Kenya and increasingly across East Africa. Analog Water integrates directly with Safaricom's M-Pesa API to automatically match incoming payments to customer accounts.
+M-Pesa is the dominant payment method for water utilities in Kenya and increasingly across East Africa. EasyBiller integrates directly with Safaricom's M-Pesa API to automatically match incoming payments to customer accounts.
 
 ### What you need
 
@@ -34,7 +34,7 @@ Before configuring M-Pesa, you need the following from Safaricom:
 3. Enter your **Consumer Key** and **Consumer Secret** from the Daraja portal.
 
 4. Configure the **Account Format** — this determines how the system matches payments to customers. Common formats:
-   - **Account Number** — Customers enter their Analog Water account number as the M-Pesa account reference.
+   - **Account Number** — Customers enter their EasyBiller account number as the M-Pesa account reference.
    - **Meter Number** — Customers enter their meter serial number.
    - **Phone Number** — Matching by the phone number used to pay.
 
@@ -68,7 +68,7 @@ Once M-Pesa is configured, the reconciliation process is largely automatic:
 
 1. **Customer pays** via M-Pesa to your Paybill number, entering their account reference.
 
-2. **Safaricom sends a callback** to Analog Water with the payment details: amount, phone number, account reference, and transaction ID.
+2. **Safaricom sends a callback** to EasyBiller with the payment details: amount, phone number, account reference, and transaction ID.
 
 3. **The system matches the payment** to a customer using the account reference.
 
