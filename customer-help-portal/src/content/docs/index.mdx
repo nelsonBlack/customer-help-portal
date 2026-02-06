@@ -1,40 +1,60 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
-template: splash # Remove or comment out this line to display the site sidebar on this page.
+title: Analog Water Help Center
+description: Everything you need to manage water billing, properties, and field operations with confidence.
+template: splash
 hero:
-  tagline: Congrats on setting up a new Starlight project!
-  image:
-    file: ../../assets/houston.webp
+  tagline: Find answers, learn workflows, and get the most out of your Analog Water platform.
   actions:
-    - text: Example Guide
-      link: /guides/example/
+    - text: Get Started
+      link: /getting-started/overview/
       icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
-      icon: external
+    - text: Quick Start for Admins
+      link: /getting-started/admin-quick-start/
+      icon: rocket
       variant: minimal
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 
-## Next steps
+## What would you like to do?
+
+<CardGrid>
+  <LinkCard title="Set up your company" href="/water-billing/company-setup/" description="Configure billing cycles, pricing, payment methods, and notifications for your water utility." />
+  <LinkCard title="Capture meter readings" href="/water-billing/meter-readings/" description="Learn the field workflow for recording accurate analog meter data using the dashboard or mobile app." />
+  <LinkCard title="Generate and send bills" href="/water-billing/generating-bills/" description="Run billing cycles, review charges, and distribute invoices to your customers." />
+  <LinkCard title="Record M-Pesa payments" href="/water-billing/payments/" description="Process mobile money payments, reconcile transactions, and manage customer balances." />
+</CardGrid>
+
+---
+
+## Browse by role
 
 <CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
-	</Card>
-	<Card title="Change page layout" icon="document">
-		Delete `template: splash` in `src/content/docs/index.mdx` to display a
-		sidebar on this page.
-	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
-	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
-	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
-	</Card>
+  <Card title="Company Administrators" icon="setting">
+    You run the show. Start with [Company Setup](/water-billing/company-setup/) to configure your billing rules, then learn about [Team Management](/account/team-management/) to bring your staff on board.
+  </Card>
+  <Card title="Office & Billing Staff" icon="document">
+    Your day-to-day lives in [Generating Bills](/water-billing/generating-bills/) and [Recording Payments](/water-billing/payments/). See [Customers & Meters](/water-billing/customers-and-meters/) for managing your customer base.
+  </Card>
+  <Card title="Field Meter Readers" icon="sun">
+    Head straight to [Readings in the Field](/mobile/field-readings/) for your mobile workflow. Need to work without signal? See [Working Offline](/mobile/offline-mode/).
+  </Card>
+  <Card title="Property Managers" icon="open-book">
+    Start with [Property & Unit Setup](/real-estate/property-setup/), then move to [Tenant Onboarding](/real-estate/tenant-onboarding/) and [Rent Collection](/real-estate/rent-and-charges/).
+  </Card>
 </CardGrid>
+
+---
+
+## Popular articles
+
+<CardGrid>
+  <LinkCard title="How do I set up M-Pesa payments?" href="/water-billing/payments/#setting-up-m-pesa" />
+  <LinkCard title="How do I add a new customer?" href="/water-billing/customers-and-meters/#adding-a-new-customer" />
+  <LinkCard title="How do I invite team members?" href="/account/team-management/#inviting-new-members" />
+  <LinkCard title="What if a reading looks wrong?" href="/water-billing/meter-readings/#handling-anomalies" />
+</CardGrid>
+
+:::tip[New to Analog Water?]
+Start with the [Platform Overview](/getting-started/overview/) for a quick tour of everything the platform can do, then follow the Quick Start guide for your role.
+:::

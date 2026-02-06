@@ -1,0 +1,316 @@
+---
+title: Property & Unit Setup
+description: Create properties, add units, and configure charge templates to model your real estate portfolio in Analog Water.
+---
+
+import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+
+Your properties and units are the foundation of everything in the real estate module — tenants, leases, charges, and reports all depend on them being set up correctly. This guide walks you through the full process, from creating your first property to configuring the charge templates that automate your billing.
+
+## Before you start
+
+Make sure you have completed the [Admin Onboarding Guide](/guides/admin-onboarding) and that your company is fully set up in Analog Water. The real estate module relies on your company and user accounts from the water billing system, so those must exist first.
+
+You will need the following information ready:
+
+- Property name and physical address
+- Property type (residential or commercial)
+- A list of units with their numbers, types, and sizes
+- Your standard charges (rent amounts, service fees, utility costs)
+
+---
+
+## Creating a new property
+
+A **property** represents a single physical location you manage — an apartment building, a gated community, a commercial plaza, or a standalone house.
+
+<Steps>
+
+1. **Navigate to Properties**
+
+   Go to **Real Estate > Properties** in the sidebar and click **Add Property**.
+
+2. **Enter property details**
+
+   Fill in the required fields:
+
+   | Field | Description | Example |
+   |-------|-------------|---------|
+   | **Property Name** | A recognizable name for your team and tenants | Sunrise Apartments |
+   | **Address** | Full physical address | 14 Moi Avenue, Nairobi |
+   | **Property Type** | Residential or Commercial | Residential |
+   | **Features** | Amenities and characteristics (multi-select) | Parking, Security Gate, Borehole, Lift |
+
+3. **Save the property**
+
+   Click **Save**. Your property is now created and ready for units.
+
+</Steps>
+
+:::tip[Naming convention]
+Use clear, consistent names. If you manage multiple properties in the same area, include the location — for example, "Sunrise Apartments - Westlands" and "Sunrise Apartments - Kilimani". This makes filtering and searching much easier as your portfolio grows.
+:::
+
+---
+
+## Adding units to a property
+
+A **unit** is an individual rentable space within a property — an apartment, a room, a shop, an office, or a standalone house. Every tenant lease is tied to a specific unit.
+
+<Steps>
+
+1. **Open the property**
+
+   From the Properties list, click the property you want to add units to.
+
+2. **Go to the Units tab**
+
+   Select the **Units** tab and click **Add Unit**.
+
+3. **Enter unit details**
+
+   | Field | Description | Example |
+   |-------|-------------|---------|
+   | **Unit Number** | Unique identifier within this property | A-101 |
+   | **Unit Type** | Category of the unit | 1-Bedroom, 2-Bedroom, Studio, Shop, Office |
+   | **Bedrooms** | Number of bedrooms (residential only) | 2 |
+   | **Bathrooms** | Number of bathrooms | 1 |
+   | **Square Footage** | Size of the unit | 750 sq ft |
+
+4. **Save and repeat**
+
+   Click **Save** and continue adding units until the property is complete.
+
+</Steps>
+
+:::note[Unit types matter]
+Unit types are not just labels. They play a critical role in the charge template fallback system (explained below). When you create a charge template at the unit-type level, it automatically applies to every unit of that type — so be consistent with your naming.
+:::
+
+### Adding units in bulk
+
+If you are setting up a large property with many similar units, contact support for a CSV import template. This lets you upload dozens of units at once instead of creating them one by one.
+
+---
+
+## Understanding charge templates
+
+A **charge template** defines a recurring charge that gets billed to tenants — rent, water, garbage collection, security, or any custom fee. Instead of manually setting charges for every individual tenant, you configure templates and the system applies them automatically.
+
+### The 3-tier fallback system
+
+This is one of the most powerful features in the platform. Charge templates use a three-level priority system to determine what amount a tenant gets charged:
+
+<Tabs>
+<TabItem label="How it works">
+
+| Priority | Level | When it applies |
+|----------|-------|----------------|
+| 1 (highest) | **Unit-specific** | A charge set directly on the individual unit. Overrides everything else. |
+| 2 | **Unit-type** | A charge set for all units of a given type (e.g., all 2-Bedroom units). Applies unless a unit-specific override exists. |
+| 3 (lowest) | **Property default** | A charge set at the property level. Applies to all units unless overridden at the unit-type or unit level. |
+
+The system checks from top to bottom. If it finds a charge at the unit level, it uses that. If not, it checks the unit-type level. If nothing is there either, it falls back to the property default.
+
+</TabItem>
+<TabItem label="Example">
+
+Imagine you manage **Sunrise Apartments** with the following setup:
+
+- **Property default** garbage fee: KES 500/month
+- **Unit-type override** for 3-Bedroom units: KES 700/month (larger units produce more waste)
+- **Unit-specific override** for unit A-301: KES 0/month (tenant handles their own disposal per special agreement)
+
+Here is what each tenant gets charged for garbage:
+
+| Unit | Type | Garbage charge | Why |
+|------|------|---------------|-----|
+| A-101 | 1-Bedroom | KES 500 | Falls back to property default |
+| B-205 | 2-Bedroom | KES 500 | Falls back to property default |
+| C-302 | 3-Bedroom | KES 700 | Unit-type override applies |
+| A-301 | 3-Bedroom | KES 0 | Unit-specific override wins |
+
+</TabItem>
+</Tabs>
+
+### Why this matters
+
+The fallback system saves you enormous time. Set your defaults once at the property level and you only need to create overrides for the exceptions. When you add a new unit, it automatically inherits the correct charges without any manual configuration.
+
+---
+
+## Creating charge templates
+
+### Setting property-level defaults
+
+These are your baseline charges that apply to every unit in the property unless overridden.
+
+<Steps>
+
+1. **Open the property** and go to the **Charge Templates** tab.
+
+2. **Click Add Charge Template** and fill in:
+
+   | Field | Description |
+   |-------|-------------|
+   | **Charge Name** | What this charge is for (e.g., Rent, Garbage, Security) |
+   | **Charge Type** | Select from: Rent, Water, Garbage, Security, or Custom |
+   | **Amount** | The default monthly amount |
+   | **Billing Frequency** | Monthly (most common), Quarterly, or Annually |
+
+3. **Save** the template.
+
+</Steps>
+
+### Setting unit-type overrides
+
+When certain unit types need different amounts — for example, 3-bedroom apartments paying more for garbage than studios — create a unit-type override.
+
+<Steps>
+
+1. Go to **Property > Charge Templates** and click **Add Override**.
+
+2. Select the **Unit Type** you want to override (e.g., 3-Bedroom).
+
+3. Enter the **override amount** for this charge.
+
+4. **Save**. All units of this type now use the override instead of the property default.
+
+</Steps>
+
+### Setting unit-specific overrides
+
+For one-off arrangements with individual tenants or units.
+
+<Steps>
+
+1. Open the **specific unit** from the property's Units tab.
+
+2. Go to the unit's **Charges** tab and click **Override Charge**.
+
+3. Select the charge template and enter the **custom amount**.
+
+4. **Save**. This unit now uses this amount regardless of the unit-type or property default.
+
+</Steps>
+
+---
+
+## Common charge template scenarios
+
+Here are recommended setups for three common property types. Adjust the amounts to match your market.
+
+<Tabs>
+<TabItem label="Residential apartment">
+
+**Property: Sunrise Apartments (Nairobi)**
+
+| Charge | Property Default | Studio Override | 1-BR Override | 2-BR Override | 3-BR Override |
+|--------|-----------------|----------------|--------------|--------------|--------------|
+| Rent | -- | KES 15,000 | KES 22,000 | KES 35,000 | KES 50,000 |
+| Garbage | KES 500 | -- | -- | -- | KES 700 |
+| Security | KES 1,000 | -- | -- | -- | -- |
+| Water (fixed) | KES 800 | KES 500 | -- | -- | KES 1,200 |
+
+**Why this works:** Rent varies significantly by unit type, so each type gets its own rate. Garbage and security are mostly uniform, so the property default handles them. Only the 3-bedroom garbage fee needs an override because of higher waste volume.
+
+</TabItem>
+<TabItem label="Single-family homes">
+
+**Property: Greenfield Estate (Karen)**
+
+| Charge | Property Default | Notes |
+|--------|-----------------|-------|
+| Rent | -- | Set per-unit (each house is different) |
+| Garbage | KES 1,500 | Same for all houses |
+| Security | KES 3,000 | Shared estate security |
+| Maintenance | KES 2,000 | Common area upkeep |
+
+**Why this works:** In a single-family estate, houses often have different rent amounts, so you set rent at the unit level. Service charges are usually uniform across the estate.
+
+</TabItem>
+<TabItem label="Commercial unit">
+
+**Property: Metro Business Park (Industrial Area)**
+
+| Charge | Property Default | Shop Override | Office Override | Warehouse Override |
+|--------|-----------------|--------------|----------------|-------------------|
+| Rent | -- | KES 45,000 | KES 60,000 | KES 80,000 |
+| Service charge | KES 5,000 | -- | KES 8,000 | -- |
+| Parking | KES 3,000 | -- | -- | KES 0 (included) |
+| Water | KES 2,000 | -- | -- | KES 5,000 |
+
+**Why this works:** Commercial properties have diverse unit types with very different needs. Warehouses use more water and include parking in the rent. Offices pay a higher service charge for shared facilities.
+
+</TabItem>
+</Tabs>
+
+---
+
+## Organizing properties by location
+
+As your portfolio grows, you will want to keep things organized. Here are practical approaches:
+
+- **Naming conventions** — Include the area or neighborhood in the property name: "Sunrise Apartments - Westlands", "Metro Plaza - Industrial Area".
+- **Property type filtering** — Use the Residential/Commercial filter on the Properties list to quickly narrow down what you are looking for.
+- **Search** — The property list supports search by name and address. Use it to jump directly to what you need.
+
+:::tip[Plan for growth]
+Even if you manage only a few properties today, adopt a consistent naming convention from the start. It is much harder to rename and reorganize later when you have active leases and payment histories tied to each property.
+:::
+
+---
+
+## Editing properties and units
+
+### Editing a property
+
+Open the property and click **Edit**. You can update the name, address, type, and features at any time. Changes take effect immediately and are reflected everywhere the property appears.
+
+### Editing a unit
+
+Open the unit from the property's Units tab and click **Edit**. You can update the unit number, type, size, and other details. If you change the **unit type**, be aware that this may change which charge template overrides apply to the unit.
+
+:::caution[Changing unit types]
+If a unit's type changes from "2-Bedroom" to "3-Bedroom", it will start inheriting the 3-Bedroom charge template overrides instead. Review the unit's charges after making this change to ensure the tenant is being billed correctly.
+:::
+
+---
+
+## Deactivating properties and units
+
+When a property is sold, demolished, or permanently removed from your portfolio, you can deactivate it. The same applies to individual units that are no longer available for rent.
+
+### Deactivating a unit
+
+<Steps>
+
+1. Open the unit and click **Deactivate**.
+
+2. Confirm the action. The unit will be marked as inactive and will no longer appear in available-unit lists.
+
+3. Any active lease on the unit must be terminated first. The system will prompt you if there is one.
+
+</Steps>
+
+### Deactivating a property
+
+<Steps>
+
+1. Open the property and click **Deactivate**.
+
+2. All units within the property must be vacant (no active leases) before the property can be deactivated.
+
+3. Confirm the action. The property moves to the **Inactive** filter on your Properties list.
+
+</Steps>
+
+:::note[Deactivation is reversible]
+Deactivated properties and units are not deleted. All historical data — leases, payments, tenant records — is preserved. You can reactivate them at any time from the Inactive view.
+:::
+
+---
+
+## What to do next
+
+Once your properties and units are set up with charge templates, you are ready to bring in tenants. Head to the [Tenant Onboarding Guide](/real-estate/tenant-onboarding) to learn about the two onboarding paths and how to assign tenants to units.

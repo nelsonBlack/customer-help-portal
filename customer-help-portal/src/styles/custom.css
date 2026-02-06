@@ -4,6 +4,8 @@
 :root {
   /* Light Theme Mappings */
   --mat-sys-primary: #6750a4;
+  --mat-sys-surface: #fffbfe;
+  --mat-sys-surface-container-lowest: #ffffff;
   --mat-sys-surface-container-low: #f7f2fa;
   --mat-sys-on-surface: #1c1b1f;
   --mat-sys-on-surface-variant: #49454f;
@@ -24,16 +26,22 @@
   --sl-color-bg: var(--mat-sys-surface);
   --sl-color-bg-nav: var(--mat-sys-surface-container-low);
   --sl-color-bg-sidebar: var(--mat-sys-surface-container-low);
-  
+
   /* Layout & Aesthetic */
   --sl-content-width: 50rem;
   --sl-sidebar-width: 18.75rem;
-  --sl-border-radius: 1.5rem; /* rounded-xl */
+  --sl-border-radius: 1rem;
+
+  /* Typography — use system fonts that match the Angular dashboard */
+  --sl-font: 'Roboto', system-ui, -apple-system, sans-serif;
+  --sl-font-mono: 'Roboto Mono', ui-monospace, monospace;
 }
 
 :root[data-theme='dark'] {
   /* Dark Theme Mappings */
   --mat-sys-primary: #d0bcff;
+  --mat-sys-surface: #141218;
+  --mat-sys-surface-container-lowest: #0f0d13;
   --mat-sys-surface-container-low: #1d1b20;
   --mat-sys-on-surface: #e6e1e5;
   --mat-sys-on-surface-variant: #cac4d0;
@@ -56,12 +64,13 @@
   --sl-color-bg-sidebar: var(--mat-sys-surface-container-low);
 }
 
-/* Custom UI Components Alignment */
+/* Callout / Aside styling — Material 3 outlined cards */
 .starlight-aside {
   border-radius: var(--sl-border-radius) !important;
   border: 1px solid var(--mat-sys-outline-variant) !important;
 }
 
+/* Card components */
 .card {
   border-radius: var(--sl-border-radius) !important;
   border: 1px solid var(--mat-sys-outline-variant) !important;
@@ -70,10 +79,51 @@
 
 .card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Link cards — subtle hover lift */
+.sl-link-card {
+  border-radius: var(--sl-border-radius) !important;
+  transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+.sl-link-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 /* Rounded corners for code blocks and images */
 pre, img {
   border-radius: var(--sl-border-radius) !important;
+}
+
+/* Steps component — tighter spacing for readability */
+.sl-steps > li {
+  margin-bottom: 1rem;
+}
+
+/* Table improvements */
+table {
+  border-radius: var(--sl-border-radius) !important;
+  overflow: hidden;
+}
+
+th {
+  background: var(--mat-sys-surface-container-low);
+}
+
+/* Splash page hero refinement */
+.hero {
+  padding-block: 3rem;
+}
+
+/* Smooth page transitions */
+main {
+  animation: fadeIn 0.2s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0.9; }
+  to { opacity: 1; }
 }

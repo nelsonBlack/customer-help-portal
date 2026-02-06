@@ -1,0 +1,133 @@
+---
+title: Installation & First Login
+description: Download the EasyBill mobile app, sign in to your account, and get ready for field work in under five minutes.
+---
+
+import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+
+The **EasyBill** mobile app is how your field team captures meter readings, scans QR codes, takes photo proof, and syncs everything back to your Analog Water dashboard — even without an internet connection.
+
+This guide walks you through downloading the app, signing in for the first time, and making sure everything is configured before you head into the field.
+
+## Download EasyBill
+
+<Tabs>
+  <TabItem label="Android">
+    <Steps>
+      1. Open the **Google Play Store** on your Android device.
+      2. Search for **"EasyBill by Analog Water"**.
+      3. Tap **Install** and wait for the download to complete.
+      4. Once installed, tap **Open** to launch the app.
+    </Steps>
+
+    :::note[Minimum requirements]
+    EasyBill requires Android 8.0 (Oreo) or later. If you cannot find the app in the Play Store, your device may need a software update.
+    :::
+  </TabItem>
+  <TabItem label="iOS">
+    <Steps>
+      1. Open the **App Store** on your iPhone or iPad.
+      2. Search for **"EasyBill by Analog Water"**.
+      3. Tap **Get**, then confirm with Face ID, Touch ID, or your Apple ID password.
+      4. Once installed, tap **Open** to launch the app.
+    </Steps>
+
+    :::note[Minimum requirements]
+    EasyBill requires iOS 15 or later. If you do not see the app, check that your device software is up to date in **Settings > General > Software Update**.
+    :::
+  </TabItem>
+</Tabs>
+
+:::tip[Enterprise distribution]
+If your company distributes EasyBill through an internal link (MDM or direct APK), your admin will share the download URL with you. Follow their instructions instead of using the public app stores.
+:::
+
+## Sign in for the first time
+
+Your admin creates your account on the Analog Water dashboard and assigns you a role (typically **Meter Reader**). You will receive an email or SMS with your login credentials.
+
+<Steps>
+  1. **Open EasyBill** on your device.
+
+  2. **Enter your credentials.** Type the email address or phone number and password provided by your admin.
+
+  3. **Tap "Sign In".** The app will verify your credentials with the server.
+
+  4. **Select your company.** If your account is linked to more than one company, you will see a list. Tap the company you want to work with. You can switch companies later from the app menu.
+
+  5. **You're in.** The app opens to your **Home** screen showing your assigned routes and pending tasks.
+</Steps>
+
+:::caution[First login requires internet]
+You need an active internet connection for your first sign-in. After that, the app caches your session so you can work offline. See [Working Offline](/mobile/offline-mode/) for details.
+:::
+
+### Forgot your password?
+
+Tap **"Forgot Password?"** on the sign-in screen. Enter your registered email address, and you will receive a password reset link. If you do not receive the email within a few minutes, check your spam folder or contact your company admin to resend it.
+
+## Grant permissions
+
+EasyBill needs access to a few device features to work correctly. The app will prompt you for each permission the first time it is needed, but you can also enable them ahead of time.
+
+| Permission | Why it is needed | What happens if denied |
+|---|---|---|
+| **Camera** | Take photos of meter dials as proof of readings | You cannot capture photo evidence |
+| **Location** | Tag each reading with GPS coordinates for audit trails | Readings are saved without location data |
+| **Storage / Photos** | Save captured images before upload | Photo capture may fail |
+| **Notifications** | Receive alerts for new assignments and sync status | You will not see push notifications |
+
+<Tabs>
+  <TabItem label="Android">
+    Go to **Settings > Apps > EasyBill > Permissions** and enable **Camera**, **Location** (set to "Allow all the time" or "Allow only while using the app"), and **Storage**.
+  </TabItem>
+  <TabItem label="iOS">
+    Go to **Settings > EasyBill** and toggle on **Camera**, **Location Services** (set to "While Using the App"), and **Photos**.
+  </TabItem>
+</Tabs>
+
+:::tip[Location accuracy]
+For the best GPS accuracy, set location permission to **"While Using the App"** rather than "Only This Time." This ensures consistent coordinate tagging throughout your route without draining battery when the app is closed.
+:::
+
+## Initial data sync
+
+After your first sign-in, EasyBill downloads the data you need for field work:
+
+- **Customer list** — names, account numbers, and addresses for your assigned area
+- **Meter registry** — meter serial numbers, QR codes, and last-known readings
+- **Route assignments** — your scheduled routes and any pending tasks
+- **Tariff data** — pricing tiers used for on-device bill estimates
+
+This initial sync usually takes **10 to 30 seconds** on a stable connection. A progress bar on the Home screen shows the download status.
+
+:::note[Large datasets]
+If your company has thousands of customers, the first sync may take a minute or two. Stay connected until the progress bar completes. Subsequent syncs are incremental and much faster.
+:::
+
+## Navigating the app
+
+Once signed in and synced, you will see the main sections of EasyBill:
+
+### Home screen
+Your dashboard. Shows today's assigned route, the number of readings pending, and recent sync status. Tap a route card to start capturing readings.
+
+### Readings
+A list of all readings you have captured — both submitted and pending. Filter by date, sync status, or customer name. Tap any reading to view its details, photo, and GPS coordinates.
+
+### Customers
+Browse or search the full customer list for your assigned area. Each customer card shows their meter number, address, and last reading. You can also scan a QR code from here to jump directly to a customer.
+
+### Profile & Settings
+View your account details, switch companies (if you belong to more than one), check app version, adjust notification preferences, and manually trigger a data sync.
+
+### Sync indicator
+Look for the sync icon in the top bar. A green check means everything is uploaded. An orange badge with a number means you have that many readings waiting to sync. See [Working Offline](/mobile/offline-mode/) for more on managing sync.
+
+## Next steps
+
+You are all set. Here is where to go from here:
+
+- **[Readings in the Field](/mobile/field-readings/)** — learn the full capture workflow: scanning QR codes, entering readings, taking photos, and submitting.
+- **[Working Offline](/mobile/offline-mode/)** — understand how to keep working when you lose connectivity in the field.
+- **[Common Issues](/troubleshooting/common-issues/)** — quick fixes if something goes wrong during setup.

@@ -1,0 +1,203 @@
+---
+title: Working Offline
+description: How EasyBill handles intermittent connectivity — capturing readings without internet, automatic sync, and troubleshooting sync failures.
+---
+
+import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+
+Field meter readers often work in areas with poor or no cellular coverage. EasyBill is built for this reality. You can capture readings, take photos, and report issues without any internet connection. Everything syncs automatically when connectivity returns.
+
+This guide explains how offline mode works, what gets cached on your device, and how to handle sync issues.
+
+## How offline mode works
+
+EasyBill uses a **local-first architecture**. Every reading you capture is saved to your device's local storage immediately, whether or not you have internet access. The app then uploads data to the server whenever a connection is available.
+
+You do not need to "turn on" offline mode — it is always active. The app seamlessly switches between online and offline operation without any action from you.
+
+Here is what happens at each stage:
+
+| Stage | Online behavior | Offline behavior |
+|---|---|---|
+| **Capture reading** | Saved locally, then uploaded immediately | Saved locally, queued for upload |
+| **Take photo** | Compressed and uploaded with reading | Compressed and stored locally |
+| **Report issue** | Sent to server immediately | Queued for upload |
+| **View customer data** | Pulls latest from server | Uses cached data from last sync |
+| **Receive new assignments** | Updated in real time | Updated on next sync |
+
+## What gets cached on your device
+
+When you sign in and perform your initial sync (or any subsequent sync), EasyBill downloads and caches the following data locally:
+
+- **Customer records** — names, account numbers, addresses, and contact details for your assigned area
+- **Meter data** — serial numbers, QR code mappings, last-known readings, and meter status
+- **Route assignments** — your assigned routes and task lists for the current period
+- **Tariff information** — pricing tiers for on-device consumption estimates
+- **Your captured readings** — all readings you have taken, including photos and GPS data, until they are confirmed uploaded
+
+:::note[Storage usage]
+EasyBill typically uses between 50 MB and 200 MB of device storage, depending on the size of your customer base and how many unsynced photos are queued. Photos are the largest component. If your device is low on storage, prioritize syncing pending readings to free up space.
+:::
+
+## Capturing readings offline
+
+The reading workflow is identical whether you are online or offline. There is no difference in the steps you follow.
+
+<Steps>
+  1. **Open your route** from the Home screen as usual.
+  2. **Scan the QR code** or search for the customer manually.
+  3. **Enter the reading** and take a photo.
+  4. **Tap Submit.** The reading saves to your device and appears in your local Readings list.
+</Steps>
+
+The only visible difference is the **sync indicator** in the top bar. When you are offline, you will see an orange badge showing the number of readings waiting to upload. For example, a badge showing "7" means seven readings are queued.
+
+:::tip[Keep working]
+Do not wait for connectivity to continue your route. Capture all your readings as you go. EasyBill can store hundreds of readings offline without any performance issues.
+:::
+
+## Automatic sync
+
+When your device regains an internet connection (cellular data or Wi-Fi), EasyBill begins uploading queued readings automatically. You do not need to open the app or tap anything — sync happens in the background.
+
+The sync process works as follows:
+
+<Steps>
+  1. **Connection detected.** The app checks for network availability periodically (approximately every 30 seconds).
+  2. **Queue processed.** Readings are uploaded one by one, starting with the oldest. Each reading includes its value, photo, GPS coordinates, and timestamp.
+  3. **Server confirms.** For each reading the server accepts, the local copy is marked as "synced" and the orange badge count decreases.
+  4. **Sync complete.** When all queued items are uploaded, the badge disappears and you see a green check on the sync indicator.
+</Steps>
+
+### Sync priority
+
+EasyBill prioritizes uploads in this order:
+
+1. **Reading data** (values, timestamps, GPS) — small payloads, uploaded first
+2. **Issue reports** — flagged items your admin needs to see
+3. **Photos** — larger files, uploaded after the reading data is confirmed
+
+This means your admin sees reading values almost immediately, even if the photo attachments take a few more minutes to arrive on slower connections.
+
+## Checking sync status
+
+You can check the status of your readings at any time:
+
+<Steps>
+  1. Open the **Readings** screen from the bottom navigation.
+  2. Look at the **status badge** on each reading:
+     - **Green check** — synced successfully to the server
+     - **Orange clock** — waiting to sync (queued)
+     - **Red warning** — sync failed (needs attention)
+  3. To see only unsynced readings, tap the **filter icon** and select **"Pending sync"**.
+</Steps>
+
+You can also check the overall sync status from the **Profile & Settings** screen. The **Sync Status** section shows:
+
+- Last successful sync time
+- Number of readings pending upload
+- Total data waiting to upload (in MB)
+
+## Manual sync
+
+In most cases, automatic sync handles everything. But if you want to force a sync — for example, at the end of the day when you connect to office Wi-Fi — you can trigger it manually:
+
+<Steps>
+  1. Go to **Profile & Settings**.
+  2. Tap **"Sync Now"**.
+  3. The app immediately attempts to upload all queued data.
+  4. A progress indicator shows upload status until complete.
+</Steps>
+
+:::tip[End-of-day habit]
+When you return to the office or arrive home, connect to Wi-Fi and tap "Sync Now." This ensures all of your readings reach the server before the end of the business day, giving your billing team the freshest data.
+:::
+
+## Troubleshooting sync failures
+
+If a reading shows a red warning status, it means the sync attempt failed. Here are the most common causes and how to resolve them.
+
+### "No internet connection"
+
+**Cause:** Your device has no cellular data or Wi-Fi.
+
+**Fix:**
+- Move to an area with better coverage.
+- Connect to a Wi-Fi network.
+- Check that your mobile data is turned on and you have not exhausted your data plan.
+- The reading remains safely queued and will upload when connectivity returns.
+
+### "Server unreachable"
+
+**Cause:** The Analog Water server is temporarily unavailable (maintenance or outage).
+
+**Fix:**
+- Wait 10 to 15 minutes and try again.
+- Check with your admin if there is a scheduled maintenance window.
+- Your data is safe on your device — nothing is lost.
+
+### "Upload timed out"
+
+**Cause:** The connection is too slow to upload the photo within the timeout period. This is common on EDGE (2G) networks.
+
+**Fix:**
+- Try again when you have a stronger connection (3G, 4G, or Wi-Fi).
+- The app will retry automatically on the next sync cycle.
+
+### "Reading rejected"
+
+**Cause:** The server rejected the reading, usually because the customer or meter record was deleted or modified by an admin after your last sync.
+
+**Fix:**
+- Pull down on the Readings screen to refresh your data.
+- Check if the customer still exists in your local list.
+- If the customer was removed, the reading is no longer valid. You can tap it and choose **"Discard"**.
+- Contact your admin if you believe this is an error.
+
+### "Photo upload failed"
+
+**Cause:** The photo file could not be uploaded, possibly due to corruption or an extremely large file size.
+
+**Fix:**
+- Open the reading and check if the photo preview looks normal.
+- If the photo appears corrupted, tap **"Retake Photo"** (available even after submission, as long as the reading has not synced).
+- Retry the sync.
+
+### Bulk sync issues
+
+If many readings fail at once:
+
+<Steps>
+  1. Go to **Profile & Settings > Sync Status**.
+  2. Check the error summary. If all failures share the same reason (for example, "Server unreachable"), it is likely a temporary issue.
+  3. Tap **"Retry All"** to attempt re-uploading all failed readings at once.
+  4. If failures persist after multiple retries, contact your admin with the error message shown on screen.
+</Steps>
+
+## Offline limitations
+
+While EasyBill works well offline, there are a few things that require an internet connection:
+
+- **First sign-in.** You must be online to authenticate for the first time.
+- **Password changes.** If your admin resets your password, you need to be online to sign in with the new credentials.
+- **New customer data.** Customers added after your last sync will not appear until you sync again.
+- **Real-time assignment changes.** If your admin reassigns your route while you are offline, you will not see the change until you sync.
+- **App updates.** Updating EasyBill from the app store requires an internet connection.
+
+:::note[Stale data]
+If you have been offline for more than 24 hours, the app shows a subtle banner: "Last synced X hours ago." This reminds you that your customer data may be outdated. Sync as soon as connectivity is available.
+:::
+
+## Best practices for reliable offline work
+
+1. **Sync before you leave.** Always open EasyBill on Wi-Fi in the morning and let it complete a fresh sync.
+2. **Sync when you return.** Connect to Wi-Fi at the end of the day and run a manual sync.
+3. **Keep storage available.** Ensure your device has at least 500 MB of free storage for photos and cached data.
+4. **Do not clear app data.** Clearing the app cache or storage from your device settings will delete unsynced readings. Only do this if instructed by support.
+5. **Update the app regularly.** Updates often include sync reliability improvements.
+
+## Next steps
+
+- **[Readings in the Field](/mobile/field-readings/)** — the full reading capture workflow.
+- **[Installation & First Login](/mobile/installation/)** — setting up EasyBill for the first time.
+- **[Common Issues](/troubleshooting/common-issues/)** — broader troubleshooting for login, billing, and payment problems.

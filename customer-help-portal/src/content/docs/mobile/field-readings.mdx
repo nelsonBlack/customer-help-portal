@@ -1,0 +1,194 @@
+---
+title: Readings in the Field
+description: The complete field workflow for capturing accurate meter readings with the EasyBill mobile app — from scanning QR codes to submitting photo proof.
+---
+
+import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+
+Capturing meter readings is the core of your daily field work. The EasyBill app is designed to make this fast and reliable, even in difficult conditions. This guide covers the full workflow from start to finish.
+
+## Before you head out
+
+A few things to check before you leave the office:
+
+- **App is up to date.** Check the Play Store or App Store for updates to EasyBill. Outdated versions may miss bug fixes or new features.
+- **Data is synced.** Open EasyBill and confirm the sync indicator shows a green check. This ensures you have the latest customer data and route assignments.
+- **Battery is charged.** A full day of readings with photo capture and GPS can use significant battery. Aim for at least 80% charge, or carry a power bank.
+- **Camera lens is clean.** A smudged lens leads to blurry meter photos that may be rejected during review.
+
+:::tip[Daily routine]
+Make it a habit: charge your phone overnight, open EasyBill in the morning while you have Wi-Fi, let it sync, then head out. This takes under a minute and prevents most field issues.
+:::
+
+## The field workflow
+
+### Step 1: View your assigned route
+
+Open EasyBill and tap your route card on the Home screen. You will see a list of customers and meters assigned to you for the current period, ordered by location to minimize travel time.
+
+Each item shows:
+- Customer name and account number
+- Meter serial number
+- Address or location description
+- Last recorded reading and date
+- Status (pending, completed, or flagged)
+
+You can tap the address to open it in your device's maps app for navigation.
+
+### Step 2: Navigate to the meter
+
+Use the address or GPS coordinates to find the customer's meter. If you are in an area with numbered plots or named buildings, the customer card in EasyBill includes any location notes your admin has added.
+
+:::note[Hard-to-find meters]
+If you cannot locate a meter, tap **"Report Issue"** on the customer card and select **"Meter not found"**. Add a note describing what you see on the ground. This flags the record for your admin to investigate without blocking the rest of your route.
+:::
+
+### Step 3: Identify the meter
+
+You have two ways to pull up the correct customer record:
+
+<Tabs>
+  <TabItem label="Scan QR code">
+    <Steps>
+      1. Tap the **QR scan** button (camera icon) at the top of the Readings screen or on the customer card.
+      2. Point your camera at the QR code sticker on the meter.
+      3. EasyBill matches the code and opens the reading form for that meter automatically.
+    </Steps>
+
+    This is the fastest and most accurate method. It eliminates the chance of entering a reading against the wrong customer.
+  </TabItem>
+  <TabItem label="Search manually">
+    <Steps>
+      1. Tap the **search bar** at the top of the Customers or Readings screen.
+      2. Type the customer name, account number, or meter serial number.
+      3. Tap the matching result to open the reading form.
+    </Steps>
+
+    Use manual search when QR codes are damaged, missing, or obscured. Double-check the meter serial number on the physical meter against the one shown in the app to avoid mismatches.
+  </TabItem>
+</Tabs>
+
+### Step 4: Enter the reading
+
+With the correct customer record open, you will see the reading form:
+
+<Steps>
+  1. **Review the previous reading.** The form shows the last recorded value and date. Use this as a reference — the new reading should be higher than the previous one (meters do not run backward).
+
+  2. **Enter the current reading.** Type the numbers exactly as they appear on the meter dial, reading left to right. Include all digits, even leading zeros.
+
+  3. **Check for anomalies.** EasyBill automatically calculates the consumption (current reading minus previous reading). If the value is unusually high or low, you will see a yellow warning banner. This does not block submission, but it prompts you to double-check.
+</Steps>
+
+:::caution[Reading the dial correctly]
+Analog meters display numbers on rotating dials. Always read the number each dial has **passed**, not the number it is approaching. If a dial is between 3 and 4, the correct digit is **3**. Getting this wrong is the most common source of billing disputes.
+:::
+
+### Step 5: Capture a photo
+
+After entering the reading, the app prompts you to take a photo of the meter dial.
+
+<Steps>
+  1. **Position your camera** so the full meter face is visible and in focus.
+  2. **Tap the capture button.** The app saves the photo and attaches it to the reading.
+  3. **Review the photo.** If it is blurry or the numbers are not legible, tap **"Retake"** to try again.
+</Steps>
+
+The photo serves as proof of the reading for billing audits and customer disputes. A clear, well-lit photo can save hours of back-and-forth later.
+
+**Photo quality tips:**
+- Hold your phone steady with both hands.
+- Get close enough that the numbers fill most of the frame.
+- Avoid shadows across the dial — use your phone's flashlight if needed.
+- Wipe condensation or dirt from the meter glass before shooting.
+
+### Step 6: Submit the reading
+
+Once the reading value is entered and the photo is attached:
+
+<Steps>
+  1. **Tap "Submit".** If you have an internet connection, the reading uploads immediately.
+  2. **Confirm the success message.** A green confirmation appears briefly, and the customer's status changes to "Completed" on your route list.
+  3. **Move to the next meter.** The app returns you to the route list with the next customer highlighted.
+</Steps>
+
+If you are offline, the reading is saved locally and queued for upload. See [Working Offline](/mobile/offline-mode/) for details on how sync works.
+
+## Handling special situations
+
+### Meter is inaccessible
+
+If you cannot physically reach the meter (locked gate, aggressive dog, construction blocking access):
+
+1. Tap the customer card and select **"Report Issue"**.
+2. Choose **"Meter inaccessible"** as the reason.
+3. Add a note (for example, "Gate locked, no one home").
+4. Optionally, take a photo showing the obstruction.
+5. Tap **Submit**. The record is flagged for your admin to follow up.
+
+### Meter appears damaged or tampered with
+
+If you notice a broken seal, cracked glass, visible bypass piping, or any sign of tampering:
+
+1. **Do not enter a reading.** The current dial value may not be reliable.
+2. Tap **"Report Issue"** and select **"Meter damaged"** or **"Suspected tampering"**.
+3. Take photos of the damage from multiple angles.
+4. Add a detailed note describing what you observe.
+5. Submit the report. Your admin will schedule a technical inspection.
+
+### Reading is lower than the previous one
+
+Meters should not run backward. If the current reading is lower than the last recorded value:
+
+- **Check the meter serial number** — you may be looking at the wrong meter.
+- **Re-read the dials** carefully, paying attention to the direction each dial rotates.
+- If you are confident the reading is correct, submit it anyway with a note. The system will flag it for admin review. Common causes include meter replacement (new meter starts at zero) or a previous reading error.
+
+### Customer disputes the previous reading
+
+If a customer tells you their last bill was wrong:
+
+- **Do not modify previous readings.** Only admins can correct historical data.
+- Capture today's reading accurately as usual.
+- Let the customer know to contact the office, or note the dispute in the reading's comment field so your admin sees it.
+
+## Tips for difficult conditions
+
+### Low light (early morning, basements, meter boxes)
+
+- Use your phone's **flashlight** — most meter boxes are poorly lit.
+- Tap to focus on the meter dial before taking the photo.
+- If the flash causes glare on the glass, hold the phone at a slight angle.
+
+### Rain and wet conditions
+
+- Keep your phone in a waterproof pouch or zip-lock bag. Most modern phones can handle light rain, but a protective cover prevents screen input issues.
+- Wipe the meter face with a cloth before taking the photo to avoid water droplet blur.
+- Make sure your hands are dry before using the touchscreen.
+
+### Faded or hard-to-read dials
+
+- Take the photo anyway, even if it is hard to read with the naked eye — zooming in on the photo later often reveals the numbers.
+- If you genuinely cannot read the dial, enter your best estimate and add a note: "Dial faded, approximate reading."
+- Report the meter for replacement through the **"Report Issue"** feature.
+
+### No QR code on the meter
+
+Some older installations may not have QR code stickers:
+
+- Use **manual search** to find the customer by name, account number, or meter serial (printed on the meter body).
+- Report the missing QR code so your admin can print and affix a new one on the next visit.
+
+## End of day
+
+When you finish your route:
+
+1. **Check your pending count.** Open the Readings screen and filter by "Pending sync." If the count is zero, everything has been uploaded.
+2. **Connect to Wi-Fi if possible.** If you have pending readings, connecting to a Wi-Fi network speeds up the upload, especially if you captured many photos.
+3. **Review flagged items.** Check if any readings were flagged as anomalies. Add notes where needed while the details are fresh in your memory.
+
+## Next steps
+
+- **[Working Offline](/mobile/offline-mode/)** — learn how readings are stored and synced when you lose connectivity.
+- **[Common Issues](/troubleshooting/common-issues/)** — solutions for sync problems, login issues, and more.
+- **[Capturing Meter Readings (Dashboard)](/water-billing/meter-readings/)** — the admin's view of how readings appear after you submit them.

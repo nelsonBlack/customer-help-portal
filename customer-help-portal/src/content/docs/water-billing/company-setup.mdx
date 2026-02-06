@@ -1,0 +1,370 @@
+---
+title: Company Setup & Configuration
+description: Configure your water utility company in Analog Water — billing cycles, tariffs, service charges, regions, and localization.
+---
+
+import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+
+Every water utility operates differently. Analog Water gives you full control over how your company bills customers, structures pricing, and organizes service areas. This guide walks you through each configuration setting, explains why it matters, and provides recommended defaults for common scenarios.
+
+## Before you begin
+
+You need **Admin** or **SuperAdmin** access to configure company settings. If you cannot see the **Settings** menu in your dashboard, contact your company administrator.
+
+## Billing cycle configuration
+
+Your billing cycle defines the rhythm of your entire operation — when meters are read, when bills go out, and when payments are due. Getting this right from the start saves you from confusion down the line.
+
+### Understanding the billing cycle
+
+A billing cycle in Analog Water has four key dates:
+
+| Setting | What it controls | Example |
+|---|---|---|
+| **Billing Start Day** | The day of the month your billing period begins | `1` (1st of each month) |
+| **Billing End Day** | The day of the month your billing period ends | `28` (28th of each month) |
+| **Reading Days** | Number of days allocated for meter reading | `7` (first 7 days of the cycle) |
+| **Deadline Day** | The day by which payment must be received | `15` (15th of the following month) |
+
+:::tip
+Most utilities in Kenya use a monthly cycle starting on the 1st. If you serve a large area, consider staggering reading days across regions so your field team isn't overwhelmed on day one.
+:::
+
+### Setting up your billing cycle
+
+<Steps>
+
+1. Navigate to **Settings > Billing Configuration** from your dashboard.
+
+2. Enter your **Billing Start Day** — this is the calendar day (1--31) when each billing period begins.
+
+3. Enter your **Billing End Day** — this is when the period closes and consumption is calculated.
+
+4. Set the **Reading Days** window. This tells your field agents how many days they have to capture all meter readings.
+
+5. Set the **Payment Deadline Day**. Bills generated after the end day are due by this date. After this date, penalties may apply.
+
+6. Optionally configure a **Grace Period** (in days). This gives customers extra time after the deadline before penalties kick in.
+
+7. Click **Save Configuration**.
+
+</Steps>
+
+:::caution
+Changing your billing cycle after you have active customers will affect the next billing period only. Existing unpaid bills retain their original deadline. Double-check with your team before making mid-year changes.
+:::
+
+### Grace period
+
+The grace period is the number of days after the payment deadline during which no penalty is applied. This is important for areas where customers may need extra time to reach a payment point.
+
+| Scenario | Recommended grace period |
+|---|---|
+| Urban area with M-Pesa coverage | 3--5 days |
+| Peri-urban or mixed area | 7 days |
+| Rural area with limited payment access | 10--14 days |
+
+## Pricing and tariffs
+
+Tariffs define how much you charge per unit of water consumed. Analog Water supports **tiered pricing**, which means you can charge different rates at different consumption levels — a common approach for encouraging conservation while keeping basic water affordable.
+
+### How tiered pricing works
+
+Each tariff tier has three parts:
+
+| Field | Description | Example |
+|---|---|---|
+| **Min Units** | Consumption level where this tier starts | `0` |
+| **Max Units** | Consumption level where this tier ends | `10` |
+| **Rate per Unit** | Price charged for each unit within this tier | `50.00` |
+
+When a customer's consumption is calculated, the system walks through the tiers from lowest to highest, applying the appropriate rate to each portion of their usage.
+
+**Example:** A customer uses 25 units with the following tariff:
+
+| Tier | Range | Rate (KES) | Charge |
+|---|---|---|---|
+| Tier 1 | 0--10 units | 50.00 | 500.00 |
+| Tier 2 | 11--20 units | 75.00 | 750.00 |
+| Tier 3 | 21+ units | 100.00 | 500.00 |
+| | | **Total** | **1,750.00** |
+
+### Creating a tariff
+
+<Steps>
+
+1. Go to **Settings > Tariffs**.
+
+2. Click **Add Tariff**.
+
+3. Enter a descriptive name (e.g., "Residential - Urban" or "Commercial - Nairobi").
+
+4. Add your first tier: set **Min Units** to `0`, **Max Units** to the upper boundary, and the **Rate per Unit**.
+
+5. Click **Add Tier** to create additional tiers. Each new tier's min should be one unit above the previous tier's max.
+
+6. Review the tier summary to make sure there are no gaps or overlaps.
+
+7. Click **Save Tariff**.
+
+</Steps>
+
+:::note
+You can create multiple tariffs for different customer categories. For example, a "Domestic" tariff with lower rates and a "Commercial" tariff with higher rates. Tariffs are assigned at the customer level.
+:::
+
+### Recommended tariff structures
+
+<Tabs>
+  <TabItem label="Urban Residential">
+    | Tier | Range (units) | Suggested Rate (KES) |
+    |---|---|---|
+    | Lifeline | 0--6 | 30--40 |
+    | Basic | 7--20 | 50--70 |
+    | Standard | 21--50 | 80--100 |
+    | High Usage | 51+ | 120--150 |
+
+    Urban residential tariffs typically follow WASREB guidelines with a subsidized lifeline tier to ensure basic water access is affordable.
+  </TabItem>
+  <TabItem label="Rural Cooperative">
+    | Tier | Range (units) | Suggested Rate (KES) |
+    |---|---|---|
+    | Basic | 0--10 | 20--35 |
+    | Standard | 11--30 | 40--60 |
+    | High Usage | 31+ | 70--90 |
+
+    Rural cooperatives often use simpler, two- or three-tier structures with lower rates reflecting community-based operations.
+  </TabItem>
+  <TabItem label="Commercial">
+    | Tier | Range (units) | Suggested Rate (KES) |
+    |---|---|---|
+    | Base | 0--50 | 80--100 |
+    | Standard | 51--200 | 100--130 |
+    | Heavy | 201+ | 140--180 |
+
+    Commercial tariffs start at higher rates and cover larger consumption ranges per tier.
+  </TabItem>
+</Tabs>
+
+## Service charges
+
+Service charges are fixed fees that appear on every bill regardless of water consumption. They cover ongoing operational costs like infrastructure maintenance, meter rental, or administrative overhead.
+
+### Types of service charges
+
+| Charge type | Description | Typical range (KES) |
+|---|---|---|
+| **Standing charge** | Monthly fixed fee for being connected to the system | 100--500 |
+| **Meter rental** | Monthly charge for meter equipment | 50--200 |
+| **Connection fee** | One-time fee for new connections (can be amortized) | 2,000--10,000 |
+| **Sewerage charge** | Fee for wastewater/sewerage services, if applicable | 50--300 |
+
+### Adding a service charge
+
+<Steps>
+
+1. Go to **Settings > Service Charges**.
+
+2. Click **Add Service Charge**.
+
+3. Enter the **charge name** (e.g., "Standing Charge" or "Meter Rental").
+
+4. Enter the **amount** in your configured currency.
+
+5. Select the **frequency**: Monthly (applied each billing cycle) or One-Time.
+
+6. Choose whether this charge applies to **all customers** or only specific categories.
+
+7. Click **Save**.
+
+</Steps>
+
+:::tip
+Keep service charges transparent. Customers are more likely to pay on time when they understand what each line item covers. Consider including brief descriptions that appear on the printed or SMS bill.
+:::
+
+## Water charges setup
+
+Water charges are the consumption-based portion of a customer's bill — the amount calculated by applying the tariff to the units consumed. In Analog Water, water charges are computed automatically when you generate bills.
+
+The water charge for each customer is determined by:
+
+1. **Consumption** — the difference between the current and previous meter reading.
+2. **Tariff assignment** — the tiered pricing structure assigned to that customer.
+3. **Tier calculation** — the system walks through each tier, multiplying the units in that range by the tier rate.
+
+You do not configure water charges directly. Instead, you configure **tariffs** (see above) and assign them to customers. The system handles the rest.
+
+### Verifying water charge calculations
+
+After generating bills, you can review individual bills to see the tier breakdown. Each bill shows:
+
+- Previous reading and current reading
+- Total consumption (units)
+- Tier-by-tier charge breakdown
+- Total water charge
+
+If a charge looks incorrect, check the customer's assigned tariff and the meter reading values first.
+
+## Region creation and organization
+
+Regions help you organize customers geographically. This is especially useful for planning meter reading routes, assigning field agents to areas, and generating reports by location.
+
+### Creating a region
+
+<Steps>
+
+1. Go to **Settings > Regions**.
+
+2. Click **Add Region**.
+
+3. Enter a **region name** that matches how your team thinks about the area (e.g., "Kiambu Town", "Zone A - Riverside", "Thika Road Corridor").
+
+4. Optionally add a **description** with notes about the area (number of connections, special considerations).
+
+5. Click **Save**.
+
+</Steps>
+
+### Organizing with regions
+
+- **Assign customers to regions** when creating or editing customer records.
+- **Filter dashboards and reports** by region to see performance for specific areas.
+- **Plan reading routes** by assigning field agents to specific regions during reading periods.
+
+:::tip
+Start with broad regions and split them later as your customer base grows. It is easier to subdivide a region than to merge two regions with overlapping records.
+:::
+
+## Currency and localization
+
+Analog Water supports multiple East African currencies. Your currency setting affects how amounts appear on bills, reports, and payment records.
+
+### Supported currencies
+
+| Currency | Code | Symbol | Primary market |
+|---|---|---|---|
+| Kenyan Shilling | KES | KSh | Kenya |
+| Tanzanian Shilling | TZS | TSh | Tanzania |
+| Ugandan Shilling | UGX | USh | Uganda |
+| Rwandan Franc | RWF | RF | Rwanda |
+| US Dollar | USD | $ | International |
+
+### Configuring your currency
+
+<Steps>
+
+1. Go to **Settings > Company Profile**.
+
+2. Select your **currency** from the dropdown.
+
+3. The currency symbol will appear on all bills, invoices, reports, and customer-facing communications.
+
+4. Click **Save**.
+
+</Steps>
+
+:::caution
+Changing your currency after you have generated bills is not recommended. Historical records will retain the original currency, but new bills will use the updated setting. This can cause confusion in reports. Set your currency correctly during initial setup.
+:::
+
+## SMS notification setup
+
+SMS is the primary communication channel for most water utility customers in East Africa. Configuring SMS lets you send bills, payment confirmations, and overdue reminders directly to customers' phones.
+
+### SMS configuration fields
+
+| Field | Description |
+|---|---|
+| **SMS API Key** | Your API key from your SMS provider (e.g., Africa's Talking) |
+| **SMS Username** | Your account username with the SMS provider |
+| **Sender ID** | The name that appears as the SMS sender (e.g., "NAIROBIWATER") |
+
+<Steps>
+
+1. Go to **Settings > Notifications > SMS**.
+
+2. Enter your **SMS API Key**, **SMS Username**, and **Sender ID**.
+
+3. Click **Test Connection** to send a test SMS to your own number.
+
+4. Once the test succeeds, click **Save**.
+
+</Steps>
+
+:::note
+Sender IDs in Kenya must be registered with the Communications Authority. Work with your SMS provider to register your sender ID before going live. Unregistered sender IDs may be blocked by mobile networks.
+:::
+
+## Settings reference
+
+A complete reference of all company configuration fields:
+
+| Setting | Location | Description | Default |
+|---|---|---|---|
+| Company Name | Company Profile | Your utility's official name | Required |
+| Currency | Company Profile | Billing currency (KES, TZS, UGX, etc.) | KES |
+| Billing Start Day | Billing Configuration | Day of month billing period starts | 1 |
+| Billing End Day | Billing Configuration | Day of month billing period ends | 28 |
+| Reading Days | Billing Configuration | Days allocated for meter reading | 7 |
+| Deadline Day | Billing Configuration | Payment due date (day of month) | 15 |
+| Grace Period | Billing Configuration | Days after deadline before penalties | 5 |
+| Penalty Rate | Billing Configuration | Percentage or fixed amount for late payment | Varies |
+| SMS API Key | Notifications | SMS provider API key | -- |
+| SMS Username | Notifications | SMS provider username | -- |
+| Sender ID | Notifications | SMS sender display name | -- |
+
+## Recommended setup for common scenarios
+
+<Tabs>
+  <TabItem label="Urban Residential Utility">
+    **Profile:** Serving a town or city with reliable infrastructure and M-Pesa coverage.
+
+    | Setting | Recommended value |
+    |---|---|
+    | Billing cycle | 1st to 28th monthly |
+    | Reading days | 5--7 days |
+    | Payment deadline | 15th of following month |
+    | Grace period | 3--5 days |
+    | Tariff tiers | 4 tiers (lifeline, basic, standard, high) |
+    | Service charges | Standing charge + meter rental |
+    | Payment method | M-Pesa (primary) + manual cash |
+    | SMS notifications | Enabled |
+  </TabItem>
+  <TabItem label="Rural Water Cooperative">
+    **Profile:** Community-managed water system with dispersed customers and variable payment infrastructure.
+
+    | Setting | Recommended value |
+    |---|---|
+    | Billing cycle | 1st to 28th monthly |
+    | Reading days | 10--14 days |
+    | Payment deadline | 20th of following month |
+    | Grace period | 10--14 days |
+    | Tariff tiers | 2--3 tiers (basic, standard, high) |
+    | Service charges | Minimal standing charge only |
+    | Payment method | Manual cash (primary) + M-Pesa |
+    | SMS notifications | Enabled (critical for remote areas) |
+  </TabItem>
+  <TabItem label="Commercial / Industrial">
+    **Profile:** Serving businesses, factories, or institutions with high consumption.
+
+    | Setting | Recommended value |
+    |---|---|
+    | Billing cycle | 1st to 28th monthly |
+    | Reading days | 3--5 days |
+    | Payment deadline | 10th of following month |
+    | Grace period | 3 days |
+    | Tariff tiers | 3 tiers (base, standard, heavy) |
+    | Service charges | Standing charge + sewerage (if applicable) |
+    | Payment method | M-Pesa + bank transfer |
+    | SMS notifications | Enabled + email |
+  </TabItem>
+</Tabs>
+
+## Next steps
+
+Once your company is configured, you are ready to:
+
+- [Add customers and assign meters](/water-billing/customers-and-meters/)
+- [Set up M-Pesa payments](/water-billing/payments/)
+- [Start capturing meter readings](/water-billing/meter-readings/)

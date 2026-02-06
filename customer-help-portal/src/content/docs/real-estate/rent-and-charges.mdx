@@ -1,0 +1,328 @@
+---
+title: Rent Collection & Charges
+description: Understand charge types, record payments via M-Pesa and other methods, manage late fees, and track tenant balances.
+---
+
+import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+
+Once your properties are set up and tenants are onboarded, the billing engine takes over. This guide explains how charges are generated, how to record payments through M-Pesa and other channels, and how to stay on top of outstanding balances across your portfolio.
+
+## Understanding charge types
+
+Every charge billed to a tenant falls into one of these categories:
+
+| Charge Type | Description | Examples |
+|-------------|-------------|---------|
+| **Rent** | The primary monthly payment for occupying the unit | KES 35,000/month |
+| **Water** | Water usage or fixed water service fee | KES 800/month (fixed) or metered |
+| **Garbage** | Waste collection and disposal | KES 500/month |
+| **Security** | Guard services, CCTV, access control | KES 1,000/month |
+| **Custom** | Any other recurring or one-time charge you define | Parking (KES 3,000), Maintenance (KES 2,000) |
+
+### Recurring vs. one-time charges
+
+- **Recurring charges** are generated automatically every billing cycle based on charge templates. Rent, garbage, and security are typical examples.
+- **One-time charges** are created manually for specific situations — a repair bill, a penalty, or a deposit top-up. These appear on the tenant's statement for that month only.
+
+---
+
+## How the charge template fallback works
+
+Charge amounts are determined by a 3-tier priority system. The system checks each level in order and uses the first match it finds:
+
+| Priority | Level | Description |
+|----------|-------|-------------|
+| 1 (highest) | **Unit-specific** | An amount configured directly on the individual unit |
+| 2 | **Unit-type** | An amount configured for all units of a certain type (e.g., all 2-Bedroom units) |
+| 3 (lowest) | **Property default** | An amount configured at the property level, applying to all units |
+
+**Practical example:** Your property has a default garbage fee of KES 500. You set an override of KES 700 for 3-Bedroom units. Unit A-301 (a 3-Bedroom) has a special agreement for KES 0. Here is what gets charged:
+
+- **Studio unit** -- KES 500 (property default, no overrides exist)
+- **Any 3-Bedroom unit** -- KES 700 (unit-type override)
+- **Unit A-301 specifically** -- KES 0 (unit-specific override wins)
+
+For a full walkthrough of setting up charge templates, see the [Property & Unit Setup Guide](/real-estate/property-setup#understanding-charge-templates).
+
+---
+
+## Monthly charge generation
+
+At the start of each billing cycle (typically the 1st of the month), the system automatically generates charges for all active tenants based on their assigned charge templates.
+
+### What happens during generation
+
+<Steps>
+
+1. **The system scans all active leases** across your properties.
+
+2. **For each tenant, it resolves charge amounts** using the 3-tier fallback system.
+
+3. **Charges are created as line items** on the tenant's monthly statement.
+
+4. **Notifications are sent** to tenants with their billing summary (if SMS/email notifications are enabled).
+
+</Steps>
+
+### Reviewing generated charges
+
+After charge generation, go to **Real Estate > Billing > Monthly Charges** to review. You can:
+
+- View charges grouped by property, unit, or tenant
+- Filter by charge type (rent only, utilities only, etc.)
+- Spot any anomalies before tenants receive their statements
+- Edit or remove incorrectly generated charges before the payment window opens
+
+:::tip[Review before the 5th]
+Make it a habit to review generated charges within the first few days of the month. Catching errors early avoids confused tenants and payment disputes.
+:::
+
+### Adding a one-time charge
+
+For charges outside the normal billing templates:
+
+<Steps>
+
+1. Open the tenant's profile and go to the **Charges** tab.
+
+2. Click **Add One-Time Charge**.
+
+3. Enter the charge name, amount, and a description explaining what it is for.
+
+4. Save. The charge appears on the tenant's current statement.
+
+</Steps>
+
+---
+
+## Recording rent payments
+
+Analog Water supports multiple payment methods. The most common in East Africa is M-Pesa, but you can also record cash, bank transfers, and cheque payments.
+
+<Tabs>
+<TabItem label="M-Pesa (automatic)">
+
+### How M-Pesa integration works
+
+When a tenant pays via M-Pesa using your configured paybill number and account reference, the payment is matched and recorded automatically.
+
+**Setup requirements:**
+- M-Pesa paybill number configured in **Settings > Payments > M-Pesa**
+- Tenant's phone number matches their profile
+- Tenant uses the correct account reference (typically their unit number or tenant ID)
+
+**What happens when a payment comes in:**
+
+<Steps>
+
+1. The tenant sends money to your paybill via M-Pesa.
+
+2. The system receives a confirmation callback from Safaricom.
+
+3. The payment is matched to the tenant based on the phone number and account reference.
+
+4. The payment is applied to the tenant's oldest outstanding charges (FIFO — first in, first out).
+
+5. A receipt is automatically sent to the tenant via SMS.
+
+</Steps>
+
+**If a payment cannot be matched** (wrong account reference, unrecognized phone number), it appears in the **Unmatched Payments** queue for manual reconciliation.
+
+</TabItem>
+<TabItem label="Cash / Bank / Cheque">
+
+### Recording manual payments
+
+For payments received outside M-Pesa, you record them manually.
+
+<Steps>
+
+1. Go to **Real Estate > Payments** and click **Record Payment**.
+
+2. Search for the tenant by name, phone number, or unit.
+
+3. Enter the payment details:
+
+   | Field | Description |
+   |-------|-------------|
+   | **Amount** | The total amount received |
+   | **Payment Method** | Cash, Bank Transfer, or Cheque |
+   | **Reference Number** | Bank transaction ID, cheque number, or receipt number |
+   | **Payment Date** | The date the money was actually received |
+
+4. Select which charges to apply the payment to (or let the system auto-allocate using FIFO).
+
+5. Click **Confirm**. A receipt is generated and can be sent to the tenant.
+
+</Steps>
+
+</TabItem>
+</Tabs>
+
+---
+
+## Late fees and penalty configuration
+
+You can configure the system to automatically apply late fees when rent is not paid by a specified date.
+
+### Setting up late fee rules
+
+Go to **Settings > Billing > Late Fees** and configure:
+
+| Setting | Description | Example |
+|---------|-------------|---------|
+| **Grace Period** | Number of days after the due date before a penalty applies | 5 days |
+| **Penalty Type** | Fixed amount or percentage of outstanding balance | Percentage |
+| **Penalty Amount** | The fee or rate to apply | 5% of outstanding rent |
+| **Maximum Penalty** | Cap on total accumulated penalties | KES 10,000 |
+| **Application Frequency** | One-time or recurring (e.g., monthly until paid) | One-time |
+
+### How penalties are applied
+
+<Steps>
+
+1. The billing due date passes (e.g., 5th of the month).
+
+2. The grace period elapses (e.g., 5 days, so the 10th).
+
+3. For any tenant with an outstanding balance, the system calculates the penalty.
+
+4. The penalty is added as a charge on the tenant's statement.
+
+5. The tenant receives a notification about the late fee (if notifications are enabled).
+
+</Steps>
+
+:::caution[Communicate penalty policies upfront]
+Make sure your penalty policy is clearly stated in the lease agreement and communicated to tenants during onboarding. Surprise fees erode trust and create disputes.
+:::
+
+---
+
+## Viewing outstanding balances
+
+### Tenant-level view
+
+Open any tenant's profile and go to the **Statement** tab to see:
+
+- All charges (current and historical)
+- All payments received
+- Running balance
+- Aging breakdown (current, 30 days, 60 days, 90+ days overdue)
+
+### Property-level view
+
+Go to **Real Estate > Billing > Outstanding Balances** for a property-wide summary:
+
+- Total outstanding across all tenants
+- List of tenants sorted by balance (highest first)
+- Aging summary for the entire property
+- Export to CSV for offline analysis or reporting
+
+### Portfolio-level view
+
+The **Dashboard** provides a high-level snapshot across all your properties:
+
+- Total rent expected vs. total collected this month
+- Collection rate percentage
+- Properties with the highest outstanding balances
+- Trend charts showing collection performance over time
+
+---
+
+## Tenant payment history
+
+Every payment, whether automatic (M-Pesa) or manual, is recorded with a full audit trail.
+
+### Viewing payment history
+
+Open the tenant's profile and go to the **Payments** tab. Each entry shows:
+
+| Field | Description |
+|-------|-------------|
+| **Date** | When the payment was received |
+| **Amount** | How much was paid |
+| **Method** | M-Pesa, Cash, Bank Transfer, or Cheque |
+| **Reference** | Transaction ID or receipt number |
+| **Applied To** | Which charges the payment was allocated to |
+| **Recorded By** | The user who recorded the payment (for manual entries) |
+
+### Generating a tenant statement
+
+Click **Generate Statement** to create a downloadable PDF showing all charges and payments for a selected date range. This is useful for:
+
+- Responding to tenant balance inquiries
+- End-of-year tax documentation
+- Dispute resolution
+- Move-out settlement calculations
+
+---
+
+## Bulk payment recording
+
+When you receive multiple payments at once — for example, processing a bank statement with several tenant transfers — use the bulk payment feature.
+
+<Steps>
+
+1. Go to **Real Estate > Payments > Bulk Upload**.
+
+2. Download the **CSV template** and fill in the payment details: tenant identifier, amount, payment method, reference number, and date.
+
+3. Upload the completed CSV file.
+
+4. The system validates each row and shows a preview:
+   - Matched payments (green): Ready to process
+   - Warnings (yellow): Possible issues (e.g., overpayment)
+   - Errors (red): Cannot be processed (e.g., tenant not found)
+
+5. Review the preview, resolve any errors, and click **Process All**.
+
+6. Receipts are generated and sent to tenants automatically.
+
+</Steps>
+
+:::note[Reconciliation tip]
+Run bulk uploads at least once a week if you receive bank transfers regularly. The longer you wait, the harder it becomes to match payments to the correct billing period.
+:::
+
+---
+
+## Deposit management
+
+Security deposits are tracked separately from regular charges to ensure proper handling at move-out.
+
+### Recording deposit collection
+
+Deposits are recorded during the [tenant onboarding process](/real-estate/tenant-onboarding). The system tracks:
+
+- **Expected deposit** — The amount agreed upon in the lease
+- **Amount received** — What has actually been collected (supports partial payments)
+- **Balance** — Any outstanding deposit amount
+
+### Deposit status tracking
+
+| Status | Meaning |
+|--------|---------|
+| **Pending** | Deposit agreed but not yet received |
+| **Partially Paid** | Some of the deposit has been collected |
+| **Fully Paid** | The complete deposit amount has been received |
+| **Refund Due** | Tenant has moved out and the deposit (or a portion) is to be returned |
+| **Refunded** | Deposit has been returned to the tenant |
+| **Forfeited** | Deposit retained due to damages or outstanding balances |
+
+### Handling deposit refunds
+
+When a tenant moves out, the deposit refund process is managed through the [Lease Management Guide](/real-estate/lease-management#handling-deposit-refunds). In summary:
+
+1. Conduct a unit inspection
+2. Deduct any repair costs or outstanding balances
+3. Calculate the refund amount
+4. Process the refund through M-Pesa or bank transfer
+5. Record the refund in the system
+
+---
+
+## What to do next
+
+Now that you understand how billing and payments work, learn how to manage the full lease lifecycle — renewals, terminations, rent escalations, and move-outs — in the [Lease Management Guide](/real-estate/lease-management).

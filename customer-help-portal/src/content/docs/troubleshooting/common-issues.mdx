@@ -1,0 +1,261 @@
+---
+title: Common Issues
+description: Solutions for the most frequent problems — login failures, sync issues, billing errors, payment gaps, SMS delivery, and missing data.
+---
+
+import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+
+This page covers the most common problems our users encounter and how to resolve them. If your issue is not listed here, check the [FAQ](/troubleshooting/faq/) or contact support at **support@analogwater.com**.
+
+---
+
+## "I can't log in"
+
+### Symptoms
+- You see "Invalid email or password" on the sign-in screen.
+- You see "Account not found" or "Account deactivated."
+- The sign-in page loads but nothing happens when you tap "Sign In."
+
+### Solutions
+
+<Tabs>
+  <TabItem label="Wrong password">
+    <Steps>
+      1. Tap **"Forgot Password?"** on the sign-in screen (dashboard or EasyBill app).
+      2. Enter the email address associated with your account.
+      3. Check your inbox for a password reset link. Also check your spam folder.
+      4. Click the link, create a new password, and try signing in again.
+    </Steps>
+
+    :::note
+    Password reset links expire after 1 hour. If the link has expired, request a new one.
+    :::
+  </TabItem>
+  <TabItem label="Email not verified">
+    If you just received an invitation, your account may not be fully activated.
+
+    <Steps>
+      1. Check your inbox for the original invitation email from Analog Water.
+      2. Click the **activation link** in that email to set your password.
+      3. If the link has expired (older than 72 hours), ask your admin to resend the invitation from **Settings > Team Management**.
+    </Steps>
+  </TabItem>
+  <TabItem label="Account deactivated">
+    If you see "Account deactivated," your admin has disabled your access.
+
+    - Contact your company admin and ask them to reactivate your account.
+    - They can do this from **Settings > Team Management** by finding your name and selecting **"Reactivate"**.
+  </TabItem>
+  <TabItem label="App not responding">
+    If the sign-in button does not respond or the app appears frozen:
+
+    <Steps>
+      1. Close the app completely and reopen it.
+      2. Check your internet connection — first sign-in requires connectivity.
+      3. If the problem persists, clear the app cache:
+         - **Android**: Settings > Apps > EasyBill > Storage > Clear Cache
+         - **iOS**: Delete and reinstall the app
+      4. Try again.
+    </Steps>
+  </TabItem>
+</Tabs>
+
+---
+
+## "My readings aren't syncing"
+
+### Symptoms
+- The sync indicator shows an orange badge that does not decrease.
+- Readings appear as "Pending sync" for hours or days.
+- You see red error badges on individual readings.
+
+### Solutions
+
+<Steps>
+  1. **Check your internet connection.** Open a web browser on your phone and try loading any website. If the browser does not work, the issue is your network, not the app.
+
+  2. **Move to better coverage.** If you are in a low-coverage area, readings will sync automatically once you reach a stronger signal.
+
+  3. **Connect to Wi-Fi.** The fastest way to clear a sync queue is to connect to a Wi-Fi network and tap **"Sync Now"** in Profile & Settings.
+
+  4. **Check for app updates.** Open the Play Store or App Store, search for EasyBill, and install any available updates. Older versions may have sync bugs that have been fixed.
+
+  5. **Check remaining storage.** If your device is nearly full, the app may struggle to process the upload queue. Free up space by removing unused apps or media.
+
+  6. **Restart the app.** Close EasyBill completely (remove it from the recent apps list) and reopen it.
+
+  7. **Restart your phone.** If nothing else works, a device restart resolves most transient network and app state issues.
+</Steps>
+
+If readings still fail after these steps, tap a red-flagged reading to see the specific error message and refer to the [sync troubleshooting section](/mobile/offline-mode/#troubleshooting-sync-failures) for detailed resolution steps.
+
+---
+
+## "Bills look wrong"
+
+### Symptoms
+- A customer's bill amount is unexpectedly high or low.
+- The consumption figure does not match what the meter reader recorded.
+- Charges for tariff tiers, standing charges, or taxes seem incorrect.
+
+### Solutions
+
+<Tabs>
+  <TabItem label="Check the meter reading">
+    The most common cause of incorrect bills is a reading error.
+
+    <Steps>
+      1. Go to **Water Billing > Meter Readings** in the dashboard.
+      2. Find the customer and review their last two readings.
+      3. Compare the recorded reading with the **photo proof** (if available). Does the photo match the entered number?
+      4. If the reading was entered incorrectly, an Admin can **edit the reading** and regenerate the bill.
+    </Steps>
+
+    :::tip
+    Look for common digit errors: transposing numbers (entering 5432 instead of 5342) or misreading analog dials (reading the approaching number instead of the passed number).
+    :::
+  </TabItem>
+  <TabItem label="Check the tariff configuration">
+    If consumption looks correct but the amount is wrong, the issue may be in your tariff setup.
+
+    <Steps>
+      1. Go to **Settings > Company Settings > Billing** (or [Company Setup](/water-billing/company-setup/)).
+      2. Review your tariff tiers. Are the unit prices correct?
+      3. Check the **standing charge** and **minimum charge** — these are added to every bill.
+      4. Verify the **tax rate** percentage.
+      5. If you recently changed tariff settings, remember that changes apply only to **future** bills. Past bills are not retroactively recalculated.
+    </Steps>
+  </TabItem>
+  <TabItem label="Check billing cycle dates">
+    Unexpected bills can occur when the billing cycle dates shift.
+
+    <Steps>
+      1. Verify the **billing period** shown on the disputed bill. Does it cover the expected date range?
+      2. If the period is shorter or longer than normal, the customer's consumption will be proportionally lower or higher.
+      3. Check if the billing cycle was manually triggered early or if the start date was recently changed.
+    </Steps>
+  </TabItem>
+  <TabItem label="Duplicate or missing bills">
+    - **Duplicate bills**: Check if the billing cycle was accidentally run twice. Go to **Water Billing > Bills** and filter by the billing period. If duplicates exist, void the extras.
+    - **Missing bills**: The customer may not have had a reading captured for that period. Check **Meter Readings** for gaps.
+  </TabItem>
+</Tabs>
+
+---
+
+## "M-Pesa payments not showing"
+
+### Symptoms
+- A customer says they paid via M-Pesa, but the payment does not appear in the dashboard.
+- M-Pesa payments appear hours or days late.
+- Payments show in M-Pesa statements but not in Analog Water.
+
+### Solutions
+
+<Steps>
+  1. **Wait 5 to 15 minutes.** M-Pesa payment confirmations arrive via a callback from Safaricom. During peak hours, there can be a delay of up to 15 minutes.
+
+  2. **Verify the paybill number.** Ask the customer to confirm they sent the payment to your **correct paybill number** (not a different business). Check the M-Pesa confirmation SMS on their phone.
+
+  3. **Check the account reference.** The customer must enter the correct account number (or whatever reference format you configured). If they entered the wrong reference, the system may not be able to match the payment to their account.
+
+  4. **Check your M-Pesa configuration.** Go to **Settings > Company Settings > Payments > M-Pesa** and verify:
+     - Consumer key and consumer secret are correct and not expired.
+     - The callback URL is intact (do not modify this unless instructed by support).
+     - Click **"Test Connection"** to verify the integration is live.
+
+  5. **Check the payment log.** Go to **Water Billing > Payments** and look for unmatched payments. Payments with incorrect references may appear in an "Unmatched" queue where you can manually assign them to a customer.
+
+  6. **Manual reconciliation.** If the payment is confirmed on M-Pesa but does not appear at all in Analog Water, record it as a manual payment and note the M-Pesa transaction ID. Contact support to investigate the callback failure.
+</Steps>
+
+:::note[Safaricom outages]
+Occasionally, Safaricom's Daraja API experiences downtime. During these periods, payment callbacks may be delayed by hours. Payments are never lost — they arrive once the API recovers. Check [Safaricom Developer Portal](https://developer.safaricom.co.ke/) for status updates.
+:::
+
+---
+
+## "SMS not sending"
+
+### Symptoms
+- Customers report they are not receiving bill notifications or payment confirmations via SMS.
+- The notification log shows "Failed" status for SMS messages.
+
+### Solutions
+
+<Steps>
+  1. **Check your Africa's Talking credentials.** Go to **Settings > Company Settings > Notifications > SMS** and verify your username and API key. Copy them fresh from the [Africa's Talking dashboard](https://account.africastalking.com/).
+
+  2. **Check your Africa's Talking balance.** Log in to Africa's Talking and view your account balance. If the balance is zero, SMS messages will fail silently. Top up your balance to resume sending.
+
+  3. **Check your Sender ID.** If you configured a Sender ID that has not been approved, messages may fail. Try removing the Sender ID temporarily and testing with the default short code.
+
+  4. **Verify phone number format.** Phone numbers must include the country code. For Kenya, numbers should start with `+254` (for example, `+254712345678`). Go to the customer's profile and check the format.
+
+  5. **Send a test SMS.** Go to **Settings > Notifications > SMS** and click **"Send Test SMS"** with your own number. If the test succeeds, the issue may be specific to certain customer phone numbers.
+
+  6. **Review the notification log.** Go to **Settings > Notifications > Log** and filter for failed SMS messages. The error details often reveal the exact cause (invalid number, insufficient balance, network error).
+
+  7. **Check Africa's Talking for sandbox vs production.** If you are using sandbox credentials, messages only go to sandbox numbers. Ensure you are on production credentials.
+</Steps>
+
+---
+
+## "I can't see my company"
+
+### Symptoms
+- After logging in, the dashboard is empty or shows "No companies found."
+- You are logged in but see a different company than expected.
+- The company switcher does not list the company you expect to see.
+
+### Solutions
+
+<Steps>
+  1. **Check your role and assignment.** Ask your admin to verify that your account is assigned to the correct company with an active role. They can check this in **Settings > Team Management**.
+
+  2. **Use the company switcher.** If you belong to multiple companies, click the company name in the top navigation bar to see the full list. Select the one you need.
+
+  3. **Check for deactivation.** If your access to a specific company was revoked or your account was deactivated, you will not see that company. Contact your admin.
+
+  4. **Clear browser cache.** In rare cases, a stale session can cause the dashboard to display incorrect data.
+     - **Chrome**: Settings > Privacy and Security > Clear Browsing Data > Cached images and files
+     - **Safari**: Preferences > Privacy > Manage Website Data > Remove All
+     - **Firefox**: Settings > Privacy & Security > Cookies and Site Data > Clear Data
+
+  5. **Try signing out and back in.** This forces a fresh session and reloads your company assignments.
+</Steps>
+
+---
+
+## "Customer data is missing"
+
+### Symptoms
+- You search for a customer by name or account number, but no results appear.
+- A customer who was previously in the system seems to have disappeared.
+- The customer list looks shorter than expected.
+
+### Solutions
+
+<Steps>
+  1. **Check your search term.** Try searching by a different field — account number, meter number, or phone number instead of name. Partial matches work, but check for typos.
+
+  2. **Check active filters.** The customer list may have a filter applied (for example, showing only a specific zone, route, or status). Click **"Clear Filters"** to reset the view.
+
+  3. **Check for deactivated records.** If a customer was deactivated (disconnected or moved), they may be hidden from the default view. Toggle **"Show deactivated"** or **"Show all statuses"** in the filter panel.
+
+  4. **Check your role permissions.** Meter Readers only see customers assigned to their route. If a customer is assigned to a different route, they will not appear in your list. Ask your Manager or Admin.
+
+  5. **Check the mobile app sync.** If you are looking for a customer in EasyBill and they were recently added, your app may not have synced the latest data. Pull down to refresh or go to **Profile & Settings > Sync Now**.
+
+  6. **Verify the customer was created.** Ask your admin to search for the customer in the dashboard. If the customer was never entered into the system, they will need to be created. See [Customers & Meters](/water-billing/customers-and-meters/).
+</Steps>
+
+---
+
+## Still stuck?
+
+If none of the above solutions resolve your issue:
+
+1. **Check the [FAQ](/troubleshooting/faq/)** for additional answers.
+2. **Gather details.** Note the exact error message, the steps you took, your browser or app version, and your device type.
+3. **Contact support** at **support@analogwater.com** or use the in-app feedback button. Include the details you gathered — this helps us resolve your issue faster.
