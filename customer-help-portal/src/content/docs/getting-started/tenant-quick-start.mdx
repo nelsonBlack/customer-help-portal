@@ -1,0 +1,201 @@
+---
+title: Quick Start for Tenants
+description: Understand your water bill, pay via M-Pesa, and check your balance — a simple guide for customers.
+---
+
+import { Steps, Tabs, TabItem, Aside } from '@astrojs/starlight/components';
+
+This guide is for you if you receive a water bill from a company that uses EasyBiller. It explains how your bill works, how to pay, and how to get help if something does not look right.
+
+![The EasyBiller platform used by your water company to manage billing](../../../assets/guides/auth-login-page.png)
+
+You do not need to install any app or create an account. Everything you need comes to you through SMS or email from your water company.
+
+## How you receive your bill
+
+Your water company sends you a bill notification after each billing cycle (usually once a month). You will receive it as an **SMS** to the phone number on your account, and optionally as an **email** if your company has your email address on file.
+
+The message includes:
+- Your **name** and **account number**
+- The **billing period** (e.g., "1 Jan 2026 - 31 Jan 2026")
+- Your **water consumption** in cubic meters (m3)
+- The **total amount due** in your local currency
+- The **payment due date**
+- Instructions for how to pay
+
+<Aside type="tip">
+Save your water company's SMS sender name in your phone contacts. This makes it easier to find your bills later. The sender name is usually your company's short name (e.g., "MajiSafi" or "AquaUtils").
+</Aside>
+
+## Understanding your bill
+
+Your bill is calculated based on how much water you used during the billing period. Here is how the numbers break down:
+
+### Consumption
+Your meter is read at the beginning and end of each billing period. The difference between the two readings is your **consumption** — the amount of water you used, measured in cubic meters (m3).
+
+For example:
+- Previous reading: **1,200 m3**
+- Current reading: **1,225 m3**
+- Your consumption: **25 m3**
+
+### Charges
+Most water companies use **tiered pricing**. This means the first portion of your consumption is charged at a lower rate, and higher usage is charged at a progressively higher rate.
+
+Here is an example of how a 25 m3 bill might be calculated:
+
+| Tier | Units | Rate (KES/m3) | Subtotal (KES) |
+|---|---|---|---|
+| First 10 m3 | 10 | 50 | 500 |
+| Next 20 m3 (you used 15) | 15 | 75 | 1,125 |
+| **Total consumption charge** | | | **1,625** |
+
+Your bill may also include:
+- **Standing charge** — A fixed monthly fee for infrastructure and service maintenance.
+- **Sewer charge** — Some companies add a percentage for sewerage services.
+- **Arrears** — Any unpaid balance carried over from previous months.
+- **Late payment penalty** — A fee applied if you did not pay your previous bill on time.
+
+Your **total amount due** is the sum of all these items.
+
+<Aside type="note">
+If your bill seems unusually high, it could mean a leak in your plumbing, a faulty meter, or an incorrect reading. See the section below on how to raise a dispute with your water company.
+</Aside>
+
+## How to pay via M-Pesa
+
+Most water companies on EasyBiller accept payment through **Safaricom M-Pesa**. This is the fastest way to pay, and your payment is recorded automatically.
+
+<Steps>
+
+1. **Open M-Pesa on your phone**
+
+   Go to the **M-Pesa** menu on your SIM toolkit, or open the **mySafaricom** app.
+
+2. **Select Lipa na M-Pesa**
+
+   Choose **Lipa na M-Pesa** from the menu, then select **Pay Bill**.
+
+3. **Enter the paybill number**
+
+   Type in your water company's **paybill number**. This number is included in every bill notification SMS you receive.
+
+   <Aside type="tip">
+   Save the paybill number as a favourite in your M-Pesa menu. This saves time every month and reduces the chance of typing the wrong number.
+   </Aside>
+
+4. **Enter your account number**
+
+   Type in your **water account number** exactly as it appears on your bill. This is how the system matches your payment to your account.
+
+   Common account number formats:
+   - **MSW-001** (company prefix + number)
+   - **12345** (numeric only)
+   - **KLM/2024/078** (region/year/number)
+
+   Your format depends on your water company. Use the exact format shown on your bill or SMS notification.
+
+   <Aside type="caution">
+   If you enter the wrong account number, your payment may not be applied to your account. Double-check the number before confirming. If you do make a mistake, contact your water company immediately with the M-Pesa confirmation code.
+   </Aside>
+
+5. **Enter the amount**
+
+   Type the amount you want to pay. You can pay the full amount due or a partial payment. Paying the full amount by the due date avoids late payment penalties.
+
+6. **Confirm and enter your M-Pesa PIN**
+
+   Review the details on screen — paybill number, account number, and amount. If everything is correct, enter your **M-Pesa PIN** to confirm the payment.
+
+7. **Save your confirmation message**
+
+   You will receive an M-Pesa confirmation SMS with a **transaction code** (e.g., "RAK3X7Y2ZQ"). Keep this message. It is your proof of payment.
+
+   Your water company will also send you a **payment confirmation SMS** once the system processes your M-Pesa transaction. This usually happens within a few minutes.
+
+</Steps>
+
+## Checking your balance and payment history
+
+If your water company provides a customer portal or sends regular statements, you can view:
+
+- Your **current balance** (what you owe right now)
+- Your **payment history** (all payments you have made, with dates and amounts)
+- Your **consumption history** (how much water you used in previous months)
+
+<Tabs>
+  <TabItem label="Via SMS">
+    Some companies let you check your balance by sending a keyword to their SMS short code. For example, you might text **BAL** to their number and receive your current balance in reply.
+
+    Ask your water company if this service is available and what keyword to use.
+  </TabItem>
+  <TabItem label="Via your company">
+    You can always call or visit your water company's office to ask about your balance and payment history. Have your account number ready when you call.
+  </TabItem>
+</Tabs>
+
+<Aside type="note">
+EasyBiller gives your water company the tools to manage your account. The features available to you (SMS balance checks, email statements, etc.) depend on what your company has enabled. Contact them directly to find out what is available.
+</Aside>
+
+## If something does not look right
+
+### Your bill seems too high
+
+An unusually high bill can happen for several reasons:
+
+- **A leak in your plumbing** — Check your taps, toilets, and pipes for dripping or running water. Even a small leak can waste a lot of water over a month.
+- **A faulty meter** — If you suspect your meter is not reading correctly, ask your water company to inspect it.
+- **An incorrect reading** — Meter readers sometimes misread a dial. Your company can verify by checking the photo taken during the reading.
+- **Estimated reading** — If your meter could not be read (e.g., it was inaccessible), your bill may be based on an estimate. The next actual reading will correct any difference.
+
+### How to raise a dispute
+
+<Steps>
+
+1. **Contact your water company**
+
+   Call or visit their office. You can find their contact details on your bill notification SMS or on any previous correspondence.
+
+2. **Provide your account details**
+
+   Give them your **full name**, **account number**, and the **billing period** in question.
+
+3. **Explain the issue**
+
+   Be specific. For example: "My January bill shows 45 m3 but I live alone and normally use about 10 m3."
+
+4. **Request a meter inspection if needed**
+
+   If you believe the meter is faulty, ask for a physical inspection. Your company's field team can visit your meter to verify.
+
+5. **Keep records**
+
+   Save all SMS notifications, M-Pesa receipts, and any reference numbers your company gives you during the dispute process.
+
+</Steps>
+
+<Aside type="tip">
+Acting quickly gives you the best chance of a smooth resolution. If you notice a problem, contact your water company within the first week of receiving the bill rather than waiting until the due date.
+</Aside>
+
+## Common questions
+
+**What if I pay after the due date?**
+Most companies charge a late payment penalty, which will appear on your next bill. The penalty amount varies by company. Pay on time to avoid extra charges.
+
+**Can I pay in installments?**
+This depends on your water company's policy. Some companies allow partial payments — contact them to arrange a payment plan if you need one.
+
+**What happens if I do not pay?**
+If your bill remains unpaid for an extended period, your water company may disconnect your service. You will typically receive warning notices before disconnection. Contact your company early if you are having difficulty paying.
+
+**I moved out. Do I still owe money?**
+If there is an outstanding balance on your account from when you were living at the property, you are typically responsible for it. Contact your water company to settle the final bill and close your account.
+
+**I just moved in and received a bill for the previous tenant.**
+Contact your water company immediately. They need to update the account to your name and ensure you are only billed from your move-in date.
+
+<Aside type="note" title="Need help?">
+Your water company is your first point of contact for any billing questions, disputes, or account changes. Their contact details are included in every bill notification you receive.
+</Aside>

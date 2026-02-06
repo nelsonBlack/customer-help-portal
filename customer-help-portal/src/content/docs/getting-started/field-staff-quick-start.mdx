@@ -1,0 +1,170 @@
+---
+title: Quick Start for Field Staff
+description: Get up and running with the EasyBill mobile app to capture meter readings in the field.
+---
+
+import { Steps, Tabs, TabItem, Aside } from '@astrojs/starlight/components';
+
+This guide is for field meter readers. It covers everything you need to start capturing readings with the EasyBill mobile app — from installation to your first submitted reading.
+
+The whole process takes about 5 minutes to set up. After that, each reading takes less than 30 seconds.
+
+## Before you begin
+
+You will need:
+- A smartphone (Android 8.0+ or iOS 14.0+) with a working camera
+- Login credentials from your company admin (email and password)
+- An internet connection for initial setup (the app works offline after that)
+
+<Aside type="note">
+Do not have login credentials yet? Ask your company administrator to invite you through the EasyBiller dashboard. They will send you an email with a link to create your account.
+</Aside>
+
+## Getting started with EasyBill
+
+![The EasyBiller login screen where field staff sign in](../../../assets/guides/auth-login-page.png)
+
+<Steps>
+
+1. **Download the EasyBill app**
+
+   <Tabs>
+     <TabItem label="Android">
+       Open the **Google Play Store** on your phone. Search for **"EasyBill Meter Reader"** and tap **Install**.
+
+       If your admin sent you a direct download link, tap the link to go straight to the app listing.
+     </TabItem>
+     <TabItem label="iOS">
+       Open the **App Store** on your iPhone. Search for **"EasyBill Meter Reader"** and tap **Get**.
+
+       You may need to enter your Apple ID password or use Face ID / Touch ID to confirm the download.
+     </TabItem>
+   </Tabs>
+
+   Wait for the app to finish downloading and installing. This usually takes less than a minute.
+
+2. **Log in with your credentials**
+
+   Open the EasyBill app. You will see a login screen.
+
+   - Enter the **email address** your admin registered for you.
+   - Enter your **password**.
+   - Tap **Sign In**.
+
+   On your first login, the app will download your assigned customer list and route data. This may take a moment depending on your internet speed.
+
+   <Aside type="tip">
+   Enable "Remember me" on the login screen so you do not have to type your credentials every day. You will still need to enter your password if you sign out or if the app is idle for more than 24 hours.
+   </Aside>
+
+3. **View your assigned route**
+
+   After logging in, you will see your **Route** screen. This shows all the customers assigned to you for the current billing cycle.
+
+   Each customer entry shows:
+   - Customer name and account number
+   - Meter number
+   - Address or location description
+   - Status: **Pending** (not yet read), **Completed** (reading submitted), or **Flagged** (needs attention)
+
+   Customers are listed in the suggested walking/driving order based on your region. You can also search for a specific customer by name or meter number using the search bar at the top.
+
+4. **Navigate to a customer's meter**
+
+   Tap on a customer's name to open their details. You will see:
+   - The customer's address and any directions or notes left by your admin
+   - The **previous reading** value (so you know what to expect)
+   - A **Navigate** button that opens directions in Google Maps or Apple Maps
+
+   Use the navigation feature if you are unfamiliar with the route. Otherwise, proceed directly to the meter location.
+
+5. **Enter the meter reading**
+
+   Once you are at the meter, tap **New Reading**.
+
+   Look at the analog dial on the meter and enter the numbers exactly as they appear, reading left to right. Enter only the black digits — ignore any red digits or small dials (those are decimal fractions and are not needed).
+
+   | What you see on the dial | What you enter |
+   |---|---|
+   | 00345 (black digits) + 67 (red digits) | 345 |
+   | 01208 (black digits) + 00 (red digits) | 1208 |
+
+   <Aside type="caution">
+   Always read the dial carefully. A misread digit can result in an incorrect bill for the customer. If you are unsure, take a step back and read the meter again before entering the value.
+   </Aside>
+
+   <Aside type="tip">
+   The app will warn you if your reading is significantly higher or lower than expected based on the customer's history. If you see this warning, double-check the meter. If the reading is correct, you can confirm it and add a note explaining the unusual consumption (e.g., "construction in progress", "new tenant").
+   </Aside>
+
+6. **Take a photo of the meter**
+
+   After entering the reading, the app will prompt you to take a photo.
+
+   Tap **Take Photo** and point your phone's camera at the meter dial. Make sure:
+   - The numbers on the dial are clearly visible
+   - The photo is not blurry or too dark
+   - The entire dial face is in the frame
+
+   The photo serves as proof of the reading and helps resolve any disputes later. You can retake the photo if the first one is not clear enough.
+
+   <Aside type="tip">
+   If the meter is in a dark area (e.g., a basement or underground pit), turn on your phone's flashlight before taking the photo. Most phones let you toggle the flash from the camera screen.
+   </Aside>
+
+7. **Submit the reading**
+
+   Review the reading value and photo on the confirmation screen. If everything looks correct, tap **Submit**.
+
+   You will see a green checkmark and the customer's status will change to **Completed** on your route list.
+
+   Move on to the next customer on your route and repeat steps 4-7.
+
+8. **Handle offline scenarios**
+
+   EasyBill is designed to work without an internet connection. If you lose signal while in the field:
+
+   - **Readings are saved locally** on your phone. You can continue capturing readings as normal.
+   - **Photos are stored on-device** until they can be uploaded.
+   - A small **"Offline"** indicator appears at the top of the screen so you always know your connection status.
+   - When your phone reconnects to the internet (mobile data or Wi-Fi), the app **automatically syncs** all pending readings and photos in the background.
+
+   You do not need to do anything manually. Just keep working.
+
+   <Aside type="caution">
+   Do not uninstall or clear the app's data while you have unsynced readings. This will permanently delete any readings that have not been uploaded yet. Wait until you see "All readings synced" on the route screen before clearing data.
+   </Aside>
+
+   <Aside type="tip">
+   If you want to check how many readings are waiting to sync, tap the **sync icon** in the top-right corner. It shows the number of pending uploads and their total size.
+   </Aside>
+
+</Steps>
+
+![The EasyBiller dashboard showing the main navigation and overview](../../../assets/guides/dashboard-overview.png)
+
+## Daily workflow summary
+
+Here is your typical daily routine at a glance:
+
+| Time | Action |
+|---|---|
+| **Start of day** | Open EasyBill. Check your route and plan your path. |
+| **In the field** | Visit each customer's meter. Enter reading, take photo, submit. |
+| **No signal?** | Keep working. Readings save offline and sync later. |
+| **End of day** | Confirm all readings show as "Completed" or "Pending sync". Close the app. |
+
+## Troubleshooting quick fixes
+
+| Problem | What to do |
+|---|---|
+| App says "Invalid credentials" | Double-check your email and password. If you forgot your password, ask your admin to reset it. |
+| No customers on my route | Your admin may not have assigned you to a region yet. Contact them to check. |
+| Photo is too blurry | Clean your camera lens with a soft cloth. Hold your phone steady and tap to focus before taking the photo. |
+| Reading warning appears | Double-check the meter. If your reading is correct, confirm it and add a note. |
+| App will not sync | Check your internet connection. Try switching between Wi-Fi and mobile data. If the problem persists, close and reopen the app. |
+| App crashes on open | Make sure you are running the latest version of EasyBill. Update it from the Play Store or App Store. |
+
+<Aside type="note" title="Need help?">
+If you cannot resolve an issue on your own, contact your company administrator. They can check your account status, reassign your route, or escalate technical issues to the EasyBiller support team.
+</Aside>

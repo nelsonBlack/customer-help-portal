@@ -1,0 +1,236 @@
+---
+title: Frequently Asked Questions
+description: Answers to the most common questions about EasyBiller — from billing and payments to the mobile app and account management.
+---
+
+import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+
+Quick answers organized by topic. If you do not find what you are looking for here, check the [Common Issues](/troubleshooting/common-issues/) page for step-by-step troubleshooting, or contact us at **support@easybiller.com**.
+
+---
+
+## General
+
+### What is EasyBiller?
+
+EasyBiller is a B2B SaaS platform that helps water utility companies and property managers in East Africa manage meter readings, billing, payments, and customer accounts. It includes a web dashboard for office staff and the **EasyBill** mobile app for field meter readers.
+
+### Which countries does EasyBiller support?
+
+EasyBiller is built for the East African market. We currently support operations in **Kenya**, **Uganda**, and **Tanzania**, with M-Pesa integration for Kenya and mobile money integrations for other markets. The platform supports multiple currencies (KES, UGX, TZS) and can be configured for other regions on request.
+
+### How much does EasyBiller cost?
+
+Pricing depends on the number of active customer accounts your company manages. Contact our sales team at **sales@easybiller.com** or visit our website for current pricing tiers. We offer monthly and annual billing, with discounts for annual commitments.
+
+### Is my data secure?
+
+Yes. EasyBiller uses encrypted connections (TLS) for all data in transit, encrypted storage for data at rest, and role-based access control to limit who can see and modify data. We perform regular backups and follow industry-standard security practices. Your data belongs to you — we do not sell or share it with third parties.
+
+### Can I try EasyBiller before committing?
+
+Yes. We offer a trial period so you can set up your company, import a sample of your customer data, and test the full workflow. Contact **sales@easybiller.com** to get started.
+
+---
+
+## Billing
+
+### How does the billing cycle work?
+
+Your billing cycle is the recurring period for which bills are generated. You configure the cycle in [Company Setup](/water-billing/company-setup/):
+
+- **Monthly** — bills generated once per month (most common)
+- **Bi-monthly** — bills generated every two months
+- **Quarterly** — bills generated every three months
+
+At the end of each cycle, the system calculates each customer's consumption (current reading minus previous reading), applies your tariff, adds any standing charges and taxes, and generates a bill.
+
+### Can I change the billing cycle after setup?
+
+Yes, but with care. Changing the billing cycle affects the date range of the next bill. If you switch from monthly to bi-monthly mid-cycle, the next bill will cover a longer period, resulting in higher consumption and a larger amount. We recommend making cycle changes at a natural boundary (for example, the start of a new month).
+
+### How do tariff changes affect existing bills?
+
+Tariff changes apply to **future bills only**. Bills that have already been generated are not recalculated. If you need to adjust a past bill, use the bill adjustment feature in the dashboard. See [Generating Bills](/water-billing/generating-bills/) for details.
+
+### What is pro-rated billing?
+
+Pro-rated billing applies when a customer is added mid-cycle or when the billing period is shorter than the full cycle. The system calculates the charge based on the proportion of the cycle the customer was active. For example, if a customer joins halfway through a monthly cycle, their first bill covers approximately 15 days of consumption.
+
+### Can I generate bills manually?
+
+Yes. While most companies use automatic billing at the end of each cycle, you can also trigger a billing run manually from **Water Billing > Bills > Generate Bills**. This is useful for one-off situations or when you need to re-bill after correcting readings.
+
+### How do I handle billing disputes?
+
+If a customer disputes a bill:
+
+<Steps>
+  1. Review the meter reading and photo proof in **Water Billing > Meter Readings**.
+  2. If the reading was incorrect, edit it and regenerate the bill.
+  3. If the tariff was misconfigured, correct the tariff and create a bill adjustment.
+  4. If the bill is correct, share the reading photo with the customer as evidence.
+</Steps>
+
+---
+
+## Payments
+
+### How do I set up M-Pesa payments?
+
+M-Pesa integration requires a Safaricom business account with Daraja API access.
+
+<Steps>
+  1. Register on the [Safaricom Developer Portal](https://developer.safaricom.co.ke/).
+  2. Create an app and go live to receive production credentials (consumer key, consumer secret, passkey).
+  3. In EasyBiller, go to **Settings > Company Settings > Payments > M-Pesa** and enter your credentials.
+  4. Click **"Test Connection"** to verify everything works.
+</Steps>
+
+For full details, see [Company Settings > Payment settings](/account/company-settings/#m-pesa-integration).
+
+### Why is an M-Pesa payment not matching to a customer?
+
+When customers pay via M-Pesa, they enter an **account reference** (usually their account number). If they enter the wrong reference, or a reference that does not match any customer in the system, the payment lands in the **Unmatched Payments** queue. An Admin or Accountant can manually assign unmatched payments to the correct customer.
+
+### Can I record cash or bank transfer payments?
+
+Yes. Go to **Water Billing > Payments > Record Payment**, select the customer, enter the amount and payment method (cash, bank transfer, cheque, or other), and submit. The payment is applied to the customer's outstanding balance.
+
+### How do refunds work?
+
+EasyBiller supports credit notes. If a customer has overpaid or a bill needs to be reversed:
+
+<Steps>
+  1. Go to the customer's payment history.
+  2. Click **"Issue Credit Note"**.
+  3. Enter the amount and reason.
+  4. The credit is applied to the customer's balance and offsets their next bill.
+</Steps>
+
+Direct refunds (sending money back to the customer) are handled outside the system, through your company's financial processes. Record the refund as a manual adjustment.
+
+### How do I reconcile M-Pesa payments at the end of the month?
+
+Go to **Water Billing > Payments** and filter by date range and payment method (M-Pesa). Export the list as CSV and compare it with your Safaricom M-Pesa statement. Any discrepancies will typically be unmatched payments (wrong reference) or delayed callbacks (which resolve automatically).
+
+---
+
+## Mobile App (EasyBill)
+
+### What devices does EasyBill support?
+
+- **Android**: Version 8.0 (Oreo) or later
+- **iOS**: Version 15 or later
+
+Most smartphones manufactured after 2018 meet these requirements. The app is optimized for screen sizes from 5 inches (standard phone) to 10 inches (tablet).
+
+### How many readings can I store offline?
+
+EasyBill can store **hundreds of readings** offline, limited only by your device's available storage. Each reading (with photo) uses approximately 1 to 3 MB. A device with 500 MB of free storage can hold roughly 200 to 500 readings before needing to sync.
+
+### What are the photo requirements?
+
+- The photo must show the **full meter face** with legible numbers.
+- Minimum resolution is automatically handled by the app (it will not accept extremely low-quality images).
+- Photos should be **well-lit** — use your phone's flashlight in dark meter boxes.
+- The system compresses photos before upload to save bandwidth, so you do not need to worry about file size.
+
+### Can I edit a reading after submitting it?
+
+In the EasyBill app, you **cannot edit** a reading after it has been synced to the server. This is intentional — it preserves the integrity of field data. If a reading needs correction, an Admin can edit it in the web dashboard.
+
+If the reading has **not yet synced** (still showing "Pending"), you can tap it and make changes before the next sync.
+
+### What if I accidentally submit a reading for the wrong customer?
+
+Report the mistake to your Admin immediately. They can:
+1. Delete the incorrect reading in the dashboard.
+2. You can then capture the correct reading for the right customer.
+
+Using **QR code scanning** instead of manual search significantly reduces the chance of this happening.
+
+### Does EasyBill work on tablets?
+
+Yes. EasyBill works on both phones and tablets running the supported OS versions. The interface adapts to larger screens.
+
+---
+
+## Account & Administration
+
+### What are the different user roles?
+
+EasyBiller has five roles, each with different permissions:
+
+| Role | Access level |
+|---|---|
+| **SuperAdmin** | Full platform access across all companies |
+| **Admin** | Full access within one company |
+| **Manager** | Operational access (customers, readings, bills) |
+| **Meter Reader** | Field access (readings and route assignments only) |
+| **Accountant** | Financial access (bills, payments, reports) |
+
+See [Team Management](/account/team-management/) for detailed permissions.
+
+### Can one person belong to multiple companies?
+
+Yes. If your account is linked to more than one company, you will see a **company switcher** in the dashboard navigation bar and in the EasyBill app. Select the company you want to work with. Your role may differ in each company.
+
+### How do I export my data?
+
+Admins can export data from most sections of the dashboard:
+
+- **Customer list**: Water Billing > Customers > Export CSV
+- **Meter readings**: Water Billing > Meter Readings > Export CSV
+- **Bills**: Water Billing > Bills > Export CSV or PDF
+- **Payments**: Water Billing > Payments > Export CSV
+- **Financial reports**: Reports > Export
+
+Exports include all data visible in the current filtered view.
+
+### How do I delete my company account?
+
+Company deletion is a permanent action that removes all associated data. For data safety, this can only be done by contacting **support@easybiller.com**. We will verify your identity and process the request. We recommend exporting all your data before requesting deletion.
+
+### Can I customize the dashboard branding?
+
+You can add your **company logo** and **company name** in [Company Settings](/account/company-settings/). These appear on the dashboard header, bills, and receipts. Full white-label customization (colors, domain) is available on enterprise plans.
+
+### How do I reset another user's password?
+
+Admins cannot directly set a user's password. Instead:
+
+<Steps>
+  1. Go to **Settings > Team Management**.
+  2. Find the user and click the three-dot menu.
+  3. Select **"Send Password Reset"**.
+  4. The user receives an email with a link to create a new password.
+</Steps>
+
+### Is there an API for integrating with other systems?
+
+Yes. EasyBiller provides a GraphQL API for integration with external systems (ERP, accounting software, custom dashboards). API access is available on business and enterprise plans. Contact **support@easybiller.com** for API documentation and credentials.
+
+---
+
+## Data & Privacy
+
+### Where is my data stored?
+
+Your data is stored on secure cloud infrastructure. We use encrypted storage and maintain regular backups. Data residency options are available for organizations with specific compliance requirements.
+
+### Can I request a copy of all my data?
+
+Yes. Contact **support@easybiller.com** with a data export request. We will provide a complete export of your company's data in a standard format (CSV and JSON) within 5 business days.
+
+### What happens to my data if I cancel my subscription?
+
+After cancellation, your data is retained for **90 days** in case you change your mind. After 90 days, data is permanently deleted. We recommend exporting all data before cancelling.
+
+---
+
+## Still have questions?
+
+- **Email**: support@easybiller.com
+- **In-app support**: Click the help icon in the bottom-right corner of the dashboard.
+- **Documentation**: Browse the full [Help Center](/) for detailed guides on every feature.

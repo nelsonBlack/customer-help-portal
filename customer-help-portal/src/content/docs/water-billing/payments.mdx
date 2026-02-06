@@ -1,0 +1,379 @@
+---
+title: Recording Payments
+description: Set up M-Pesa integration, record manual payments, handle reconciliation, manage credits, and troubleshoot common payment issues in EasyBiller.
+---
+
+import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+
+Getting paid is the whole point. EasyBiller supports both automatic M-Pesa reconciliation and manual payment recording, giving you flexibility to handle whatever payment methods your customers prefer. This guide covers the full payment lifecycle — from setup to reconciliation and troubleshooting.
+
+![The Payments page showing transaction records](../../../assets/guides/payments-list.png)
+
+## M-Pesa payment setup
+
+M-Pesa is the dominant payment method for water utilities in Kenya and increasingly across East Africa. EasyBiller integrates directly with Safaricom's M-Pesa API to automatically match incoming payments to customer accounts.
+
+### What you need
+
+Before configuring M-Pesa, you need the following from Safaricom:
+
+| Requirement | Description | Where to get it |
+|---|---|---|
+| **Paybill Number** | Your business's M-Pesa paybill number | Safaricom Business portal |
+| **Consumer Key** | API authentication credential | Daraja developer portal |
+| **Consumer Secret** | API authentication credential | Daraja developer portal |
+| **Passkey** | Lipa Na M-Pesa Online passkey | Safaricom Business team |
+| **Short Code** | Your business short code (usually same as Paybill) | Safaricom Business portal |
+
+### Configuring M-Pesa
+
+<Steps>
+
+1. Go to **Settings > Payments > M-Pesa**.
+
+2. Enter your **Paybill Number**. This is the number customers will use when paying their bills.
+
+3. Enter your **Consumer Key** and **Consumer Secret** from the Daraja portal.
+
+4. Configure the **Account Format** — this determines how the system matches payments to customers. Common formats:
+   - **Account Number** — Customers enter their EasyBiller account number as the M-Pesa account reference.
+   - **Meter Number** — Customers enter their meter serial number.
+   - **Phone Number** — Matching by the phone number used to pay.
+
+5. Click **Test Connection** to verify your API credentials are working.
+
+6. Once the test succeeds, click **Save and Activate**.
+
+</Steps>
+
+:::caution
+The **account format** must be communicated clearly to your customers. If you use account numbers but customers enter their phone numbers, payments will fail to match automatically. Include the correct format in every bill and SMS reminder.
+:::
+
+### Account reference format
+
+The account reference is what your customers type into the M-Pesa prompt when paying. Choose a format and stick with it.
+
+| Format | Pros | Cons |
+|---|---|---|
+| **Account Number** (e.g., ACC-0451) | Unique, reliable matching | Customers may forget their account number |
+| **Meter Number** (e.g., WM-2024-00451) | Physical reference they can read off the meter | Long, prone to typos |
+| **Phone Number** | Customers already know it | Shared phones or changed numbers cause mismatches |
+
+:::tip
+Account numbers are the most reliable format. Print them on physical bills, include them in SMS bills, and encourage customers to save them in their M-Pesa favorites.
+:::
+
+## How automatic M-Pesa reconciliation works
+
+Once M-Pesa is configured, the reconciliation process is largely automatic:
+
+1. **Customer pays** via M-Pesa to your Paybill number, entering their account reference.
+
+2. **Safaricom sends a callback** to EasyBiller with the payment details: amount, phone number, account reference, and transaction ID.
+
+3. **The system matches the payment** to a customer using the account reference.
+
+4. **The payment is allocated** to the customer's oldest unpaid invoice first, then the next oldest, and so on.
+
+5. **A confirmation SMS** is sent to the customer confirming receipt and showing their updated balance.
+
+This entire process happens within seconds of the customer completing the M-Pesa transaction.
+
+### What happens when matching fails
+
+Not every payment matches perfectly. Here is how the system handles edge cases:
+
+| Scenario | System behavior | What you need to do |
+|---|---|---|
+| Account reference matches exactly | Auto-allocated, no action needed | Nothing |
+| Account reference has a minor typo | System attempts fuzzy matching and flags for review | Confirm or manually allocate |
+| No matching account found | Payment is held in **unallocated payments** | Manually match to the correct customer |
+| Customer pays from a different phone | Matched by account reference (not phone number) | Nothing, if reference is correct |
+| Amount exceeds total balance | Excess amount becomes a credit on the account | Nothing, handled automatically |
+
+### Managing unallocated payments
+
+![Payment detail showing transaction information](../../../assets/guides/payment-detail.png)
+
+<Steps>
+
+1. Go to **Payments > Unallocated**.
+
+2. Review the list of payments that could not be auto-matched. Each entry shows the phone number, amount, transaction ID, and the account reference the customer entered.
+
+3. For each unallocated payment, search for the likely customer using the phone number or a partial account reference.
+
+4. Select the correct customer and click **Allocate**.
+
+5. The payment is applied to the customer's account following the standard allocation rules.
+
+</Steps>
+
+:::note
+Check unallocated payments daily during billing periods. Customers who pay correctly but are not matched may receive overdue notices, creating unnecessary friction.
+:::
+
+## Recording manual and cash payments
+
+Not all customers pay via M-Pesa. For cash payments, bank transfers, and other offline methods, you record them manually.
+
+### Step-by-step: Recording a payment
+
+![The failed payments tab showing unprocessed transactions](../../../assets/guides/payments-failed-tab.png)
+
+<Steps>
+
+1. Navigate to **Payments > Record Payment**.
+
+2. Search for the **customer** by name, account number, or phone number.
+
+3. Enter the **payment amount**.
+
+4. Select the **payment method**: Cash, Bank Transfer, Cheque, or Other.
+
+5. Enter the **receipt number** or **reference** — for cash, this might be your internal receipt book number. For bank transfers, the transaction reference.
+
+6. Set the **payment date** (defaults to today).
+
+7. Optionally add **notes** (e.g., "Paid at Kiambu office" or "Cheque #4521").
+
+8. Click **Record Payment**.
+
+9. The system allocates the payment to the customer's outstanding invoices and updates their balance.
+
+</Steps>
+
+:::tip
+Always issue a physical or digital receipt when recording cash payments. This protects both the customer and your organization in case of disputes.
+:::
+
+## Payment allocation
+
+When a payment is received — whether via M-Pesa or manual entry — the system allocates it following a consistent rule: **oldest invoice first**.
+
+### How allocation works
+
+| Step | Action |
+|---|---|
+| 1 | Find the customer's oldest unpaid or partially paid invoice |
+| 2 | Apply as much of the payment as needed to clear that invoice |
+| 3 | If there is remaining payment, move to the next oldest invoice |
+| 4 | Continue until the payment is fully allocated |
+| 5 | If payment exceeds all outstanding invoices, the remainder becomes a credit |
+
+**Example:** A customer pays KES 5,000 and has three unpaid invoices.
+
+| Invoice | Amount Due | Payment Applied | Status After |
+|---|---|---|---|
+| January bill | KES 2,200 | KES 2,200 | Paid |
+| February bill | KES 2,660 | KES 2,660 | Paid |
+| March bill | KES 2,450 | KES 140 | Partial (KES 2,310 remaining) |
+
+The KES 5,000 was distributed across invoices chronologically. The March bill shows a partial payment with a remaining balance.
+
+## Viewing payment history
+
+### For a single customer
+
+1. Open the customer record.
+2. Go to the **Payments** tab.
+3. All payments are listed with date, amount, method, reference, and which invoices they were applied to.
+
+### For the entire system
+
+Go to **Payments > History** and use filters:
+
+| Filter | Options |
+|---|---|
+| **Date range** | Select start and end dates |
+| **Payment method** | M-Pesa, Cash, Bank Transfer, All |
+| **Region** | Filter by service area |
+| **Status** | Allocated, Unallocated, All |
+
+### Exporting payment data
+
+Click **Export** on any payment view to download the data as CSV or PDF. This is useful for:
+- Monthly accounting reconciliation
+- Board or management reports
+- Audit documentation
+- Tax records
+
+## Handling overpayments and credits
+
+Overpayments happen when a customer pays more than their outstanding balance. The excess automatically becomes a **credit** on their account.
+
+### How credits work
+
+- Credits are displayed as a negative balance on the customer's account.
+- When the next bill is generated, the credit is automatically subtracted from the total due.
+- You can also manually apply credits via the **Adjustments** function.
+
+### Viewing a customer's credit balance
+
+1. Open the customer record.
+2. The **Account Summary** section shows the current balance. A negative number indicates a credit.
+
+### Refunding a credit
+
+If a customer requests a refund of their credit (for example, if they are disconnecting):
+
+<Steps>
+
+1. Open the customer record.
+
+2. Go to **Account > Adjustments**.
+
+3. Create a **Debit adjustment** for the credit amount with a description like "Refund of overpayment".
+
+4. Process the actual refund through your organization's payment channel (M-Pesa reversal, cash, or bank transfer).
+
+5. Record the refund transaction for your accounting records.
+
+</Steps>
+
+## Payment receipts and confirmations
+
+### Automatic confirmations
+
+For M-Pesa payments, the system sends an automatic SMS confirmation to the customer:
+
+```
+NAIROBIWATER: Payment received.
+Amount: KES 2,660.00
+Ref: QKL7H2BXYZ
+Balance: KES 0.00
+Thank you for your payment.
+```
+
+### Manual receipts
+
+For cash and other manual payments, you can:
+- **Print a receipt** from the payment record screen.
+- **Send an SMS receipt** by clicking **Send Confirmation** on the payment record.
+
+:::tip
+Always send a payment confirmation, even for cash payments. It builds trust with customers and reduces disputes about whether a payment was received.
+:::
+
+## Reconciliation and reporting
+
+Regular reconciliation ensures that your system records match your actual bank and M-Pesa statements.
+
+### Daily reconciliation checklist
+
+- [ ] Check **unallocated payments** and match them to customers
+- [ ] Verify the total M-Pesa payments in the system match the M-Pesa statement
+- [ ] Verify all cash payments recorded today have corresponding physical receipts
+- [ ] Investigate any discrepancies before they age
+
+### Monthly reconciliation
+
+<Steps>
+
+1. Go to **Reports > Payment Reconciliation**.
+
+2. Select the month.
+
+3. The report shows:
+   - Total payments by channel (M-Pesa, Cash, Bank, Other)
+   - Total allocated vs. unallocated
+   - Total credits and overpayments
+   - Collection rate (amount collected / amount billed)
+
+4. Compare these totals with your M-Pesa statement and bank statements.
+
+5. Flag and investigate any differences.
+
+</Steps>
+
+### Key reports
+
+| Report | What it shows | Who uses it |
+|---|---|---|
+| **Collection Summary** | Total billed vs. total collected per period | Management, finance |
+| **Payment Method Breakdown** | Payments by channel (M-Pesa, cash, etc.) | Finance, operations |
+| **Aging Report** | Outstanding balances organized by age (30, 60, 90+ days) | Collections team |
+| **Region Collection Rate** | Payment performance by service area | Operations, field managers |
+| **Unallocated Payments** | Payments not yet matched to customers | Daily operations |
+
+## Common payment issues and troubleshooting
+
+<Tabs>
+  <TabItem label="M-Pesa payment not showing">
+    **Symptoms:** Customer says they paid via M-Pesa but the payment is not in the system.
+
+    **Troubleshooting steps:**
+
+    1. Ask the customer for their **M-Pesa confirmation message** — specifically the transaction ID (e.g., QKL7H2BXYZ).
+    2. Check **Payments > Unallocated** — the payment may be there but unmatched.
+    3. If not found in unallocated, check the **M-Pesa API logs** under **Settings > Payments > M-Pesa > Logs**.
+    4. Verify the customer paid to the correct **Paybill number** — payments to wrong paybill numbers will not reach your system.
+    5. If the payment is confirmed on M-Pesa's side but not in your system, there may have been a callback failure. Contact support to trigger a manual sync.
+  </TabItem>
+  <TabItem label="Payment allocated to wrong customer">
+    **Symptoms:** Customer A's payment was applied to Customer B's account.
+
+    **Troubleshooting steps:**
+
+    1. This usually happens when the customer entered the wrong account reference during M-Pesa payment.
+    2. Go to **Payments > History** and find the payment by transaction ID.
+    3. Click **Reallocate**.
+    4. Remove the payment from Customer B's account and allocate it to Customer A.
+    5. Customer B's invoices revert to their previous status. Customer A's balance updates.
+    6. Send correction confirmations to both customers.
+  </TabItem>
+  <TabItem label="Customer overpaid">
+    **Symptoms:** Customer paid more than their outstanding balance.
+
+    **What to do:**
+
+    1. The system automatically holds the excess as a **credit** on the customer's account.
+    2. Inform the customer that their credit will be applied to the next bill.
+    3. If the customer requests a refund, follow the [refund process](#refunding-a-credit).
+    4. No manual intervention is needed unless the customer requests a refund.
+  </TabItem>
+  <TabItem label="Duplicate payment">
+    **Symptoms:** The same payment appears twice in the system.
+
+    **Troubleshooting steps:**
+
+    1. Verify both entries have the **same transaction ID**. If they do, this is a true duplicate.
+    2. Void the duplicate entry — go to the payment record and click **Void Payment**.
+    3. Enter a reason: "Duplicate transaction".
+    4. The customer's balance adjusts automatically.
+    5. If the customer was actually charged twice on M-Pesa, they need to initiate a reversal through Safaricom.
+  </TabItem>
+  <TabItem label="Partial payment">
+    **Symptoms:** Customer paid less than the full bill amount.
+
+    **What to do:**
+
+    1. Partial payments are handled automatically. The system applies whatever is received to the oldest invoice.
+    2. The invoice status changes to **Partial** with the remaining balance shown.
+    3. No manual action is needed unless your policy requires follow-up.
+    4. The remaining balance carries forward and the customer may be subject to penalties after the deadline.
+  </TabItem>
+</Tabs>
+
+## Payment best practices
+
+1. **Communicate payment details clearly.** Every bill and reminder should include the exact paybill number and account reference. Ambiguity causes mismatches.
+
+2. **Check unallocated payments daily.** Unresolved payments lead to incorrect balances, undeserved penalty charges, and angry customers.
+
+3. **Reconcile monthly without fail.** Even if things look fine, a formal monthly reconciliation catches issues before they compound.
+
+4. **Send payment confirmations.** Whether automatic (M-Pesa) or manual (cash), confirmations reduce disputes by at least 80%.
+
+5. **Train your team on the payment flow.** Every staff member who handles money should understand how payments are allocated and how to record them correctly.
+
+6. **Keep your M-Pesa credentials secure.** API keys and secrets should only be accessible to authorized administrators. Rotate credentials if a staff member with access leaves the organization.
+
+## Next steps
+
+With payments flowing and reconciled, explore these related topics:
+
+- [Company setup and billing configuration](/water-billing/company-setup/)
+- [Generating and distributing bills](/water-billing/generating-bills/)
+- [Managing customers and meters](/water-billing/customers-and-meters/)

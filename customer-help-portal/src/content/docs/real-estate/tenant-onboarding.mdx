@@ -1,0 +1,289 @@
+---
+title: Tenant Onboarding
+description: Learn how to add tenants to your properties using single-step or two-step onboarding, assign leases, and set up charges.
+---
+
+import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+
+Getting tenants into the system quickly and accurately is critical. EasyBiller gives you two onboarding paths depending on where the tenant is in the move-in process. This guide covers both approaches, the information you need to collect, and how to avoid the most common setup mistakes.
+
+## The two onboarding paths
+
+![The tenants list page](../../../assets/guides/tenants-list.png)
+
+<Tabs>
+<TabItem label="Single-step (recommended for move-ins)">
+
+**Use when:** The tenant is ready to move in and you have all their information, the unit, and the lease terms agreed upon.
+
+**What happens:** You create the tenant profile, lease agreement, and charge assignments all in a single flow. The tenant is immediately active with charges ready to generate on the next billing cycle.
+
+**Best for:**
+- Tenants signing a lease and moving in the same day
+- Renewals where a new tenant replaces a departing one
+- Situations where all details are confirmed and finalized
+
+</TabItem>
+<TabItem label="Two-step (for prospects)">
+
+**Use when:** The tenant has expressed interest but has not committed yet. Maybe they are still viewing units, negotiating terms, or waiting for a move-in date.
+
+**What happens:** You create a **prospect** record with basic contact information. Later, when the tenant is ready, you convert the prospect into an active tenant with a lease and charges.
+
+**Best for:**
+- Tenants who are still deciding between units
+- Situations where lease terms are not yet finalized
+- Keeping a pipeline of potential tenants for upcoming vacancies
+- Property viewings where you want to capture contact details
+
+</TabItem>
+</Tabs>
+
+---
+
+## Required tenant information
+
+Before you begin either path, collect the following:
+
+### Required fields
+
+| Field | Description | Example |
+|-------|-------------|---------|
+| **Full Name** | Tenant's legal name | Jane Wanjiku Muthoni |
+| **ID/Passport Number** | National ID or passport for identification | 12345678 |
+| **Phone Number** | Primary contact, used for M-Pesa and SMS | +254 712 345 678 |
+| **Email Address** | For receipts, notices, and communication | jane@example.com |
+| **Emergency Contact** | Name and phone of someone to reach in emergencies | John Muthoni, +254 723 456 789 |
+
+### Optional but recommended
+
+| Field | Description | Why it helps |
+|-------|-------------|-------------|
+| **KRA PIN** | Tax identification number | Required for some commercial leases |
+| **Employer/Business** | Where the tenant works | Useful for tenant screening |
+| **Previous Address** | Where the tenant is moving from | Helps with reference checks |
+| **Notes** | Any special arrangements or context | "Tenant has a pet (approved)" |
+
+---
+
+## Path 1: Single-step onboarding
+
+![The tenant creation form](../../../assets/guides/tenant-create-form.png)
+
+This is the fastest way to get a tenant fully set up. You will create their profile, lease, and charges in one continuous flow.
+
+<Steps>
+
+1. **Start the onboarding flow**
+
+   Go to **Real Estate > Tenants** and click **Add Tenant**. Select **Full Onboarding** as the onboarding type.
+
+2. **Enter tenant details**
+
+   Fill in the tenant's personal information — name, ID number, phone, email, and emergency contact. All required fields are marked with an asterisk.
+
+3. **Assign a unit**
+
+   Select the **property** and then the **unit** from the dropdown. Only vacant units are shown. If you do not see the unit you expect, check that the previous tenant's lease has been terminated and the unit status is set to Vacant.
+
+4. **Set up the lease**
+
+   Configure the lease agreement:
+
+   | Field | Description |
+   |-------|-------------|
+   | **Start Date** | When the lease begins (typically the move-in date) |
+   | **End Date** | When the lease expires (commonly 12 months from start) |
+   | **Rent Amount** | Monthly rent for this tenant |
+   | **Deposit Amount** | Security deposit to be collected |
+   | **Lease Status** | Set to **Active** for immediate move-in |
+
+5. **Assign charge templates**
+
+   The system will pre-populate charges based on the unit's charge templates (using the [3-tier fallback system](/real-estate/property-setup#the-3-tier-fallback-system)). Review each charge:
+
+   - Confirm the amounts are correct for this tenant
+   - Add any additional custom charges if needed
+   - Remove any charges that do not apply to this specific tenant
+
+6. **Review and confirm**
+
+   The summary screen shows everything: tenant details, unit assignment, lease terms, and monthly charges. Review carefully, then click **Confirm & Create**.
+
+</Steps>
+
+:::tip[Deposit tracking]
+The deposit amount you enter during onboarding is automatically tracked in the system. You can view deposit status, record partial payments, and manage refunds from the tenant's profile. See the [Lease Management Guide](/real-estate/lease-management) for details on deposit handling.
+:::
+
+---
+
+## Path 2: Two-step onboarding
+
+### Step 1 — Create a prospect
+
+<Steps>
+
+1. **Start the prospect flow**
+
+   Go to **Real Estate > Tenants** and click **Add Tenant**. Select **Prospect** as the onboarding type.
+
+2. **Enter basic details**
+
+   Fill in the information you have — at minimum, the tenant's name and phone number. You can add the rest later.
+
+3. **Add notes (optional)**
+
+   Record which units the prospect viewed, their budget, preferred move-in date, or any other relevant context.
+
+4. **Save the prospect**
+
+   Click **Save**. The prospect appears in your tenant list with a **Prospect** status badge.
+
+</Steps>
+
+### Step 2 — Convert to active tenant
+
+When the prospect is ready to commit, convert them to a full tenant.
+
+<Steps>
+
+1. **Open the prospect**
+
+   Find the prospect in your tenant list (filter by **Prospect** status) and click their name.
+
+2. **Click Convert to Tenant**
+
+   This opens the conversion flow, which is similar to the single-step onboarding from Step 3 onward.
+
+3. **Complete missing information**
+
+   Fill in any required fields that were not captured during the prospect stage — ID number, email, emergency contact.
+
+4. **Assign a unit, lease, and charges**
+
+   Follow the same process as Steps 3-6 of the single-step flow: select the unit, configure the lease, review charges, and confirm.
+
+5. **Confirm conversion**
+
+   The prospect's status changes to **Active** and they are now a fully onboarded tenant with an active lease.
+
+</Steps>
+
+:::note[Prospect data is preserved]
+When you convert a prospect, all information and notes from the prospect stage carry over. Nothing is lost in the conversion.
+:::
+
+---
+
+## Assigning a tenant to a unit
+
+Whether you are using single-step or two-step onboarding, the unit assignment works the same way:
+
+1. **Select the property** from the dropdown. This filters the unit list to show only units within that property.
+2. **Select the unit** from the available units. Only units with a **Vacant** status appear.
+3. The unit's details (type, size, current charge templates) are displayed so you can verify you have selected the correct one.
+
+### What if the unit is not showing as available?
+
+- **Previous tenant still active** — Terminate the outgoing tenant's lease first. See [Lease Termination](/real-estate/lease-management#lease-termination-and-move-out).
+- **Unit is deactivated** — Reactivate the unit from the property's Units tab.
+- **Wrong property selected** — Double-check you are looking at the correct property.
+
+---
+
+## Setting up the lease agreement
+
+The lease is the contractual backbone of the tenant's stay. Here is what each field means and how to set it correctly.
+
+| Field | Guidance |
+|-------|---------|
+| **Start Date** | The day the tenant takes possession. For mid-month move-ins, you can pro-rate the first month's rent manually or start the lease on the 1st of the following month. |
+| **End Date** | Typically 12 months after the start date. The system will flag leases approaching expiry so you can plan renewals. |
+| **Rent Amount** | The agreed monthly rent. This can differ from the charge template amount if you have negotiated a special rate. |
+| **Deposit Amount** | Usually 1-2 months' rent. The system tracks deposit collection and refund status. |
+| **Lease Status** | Set to **Active** when the tenant is moving in. Use **Pending** if the lease is signed but the move-in date is in the future. |
+
+:::caution[Rent amount vs. charge template]
+The rent amount on the lease is the authoritative figure for this tenant. If the charge template says KES 35,000 but you negotiate KES 33,000, enter KES 33,000 on the lease. The system will use the lease amount for billing.
+:::
+
+---
+
+## Assigning charge templates
+
+During onboarding, the system automatically pulls in charge templates based on the unit's configuration and the [3-tier fallback system](/real-estate/property-setup#the-3-tier-fallback-system). Here is how to work with them:
+
+### Reviewing pre-populated charges
+
+The charges screen shows all templates that will apply to this tenant:
+
+| Charge | Source | Amount |
+|--------|--------|--------|
+| Rent | Lease agreement | KES 33,000 |
+| Garbage | Property default | KES 500 |
+| Security | Property default | KES 1,000 |
+| Water | Unit-type override (2-Bedroom) | KES 800 |
+
+Review each line. The **Source** column tells you where the amount is coming from, so you can understand why a particular figure is being used.
+
+### Modifying charges for this tenant
+
+- **To change an amount** — Click the charge and enter a new figure. This creates a unit-specific override.
+- **To remove a charge** — Uncheck the charge. The tenant will not be billed for it.
+- **To add a charge** — Click **Add Charge** and select from available templates or create a custom one-time charge.
+
+---
+
+## Tenant communication
+
+After onboarding is complete, the system can send automated notifications to the tenant.
+
+### Welcome message
+
+A welcome SMS and/or email is sent automatically when you confirm the onboarding. It includes:
+
+- A greeting and the property/unit details
+- The lease start date and monthly rent amount
+- M-Pesa payment instructions (paybill number and account reference)
+- Contact information for the property manager
+
+### Customizing the welcome message
+
+You can edit the welcome message template from **Settings > Notifications > Templates**. Use placeholders like `{tenant_name}`, `{unit_number}`, `{rent_amount}`, and `{mpesa_paybill}` to personalize the message automatically.
+
+---
+
+## Common mistakes to avoid
+
+Here are the issues we see most often during tenant onboarding, and how to prevent them.
+
+### 1. Skipping the emergency contact
+
+It is tempting to leave this blank when the tenant does not have it handy. Do not skip it. Emergency contacts are critical for safety situations and are required for a complete tenant record. Ask the tenant to provide one within 48 hours if they cannot give it on the spot.
+
+### 2. Wrong unit assignment
+
+Double-check the unit number before confirming. Assigning a tenant to the wrong unit creates cascading problems — incorrect charges, confused payment records, and a difficult cleanup. Verify the unit on the summary screen.
+
+### 3. Mismatched lease and charge amounts
+
+If you negotiate a rent different from the charge template, make sure the **lease rent amount** reflects the negotiated figure. The lease amount is what the system uses for billing. If the lease says KES 35,000 but you agreed to KES 33,000, the tenant will be overbilled.
+
+### 4. Forgetting to record the deposit
+
+Enter the deposit amount during onboarding even if the tenant has not paid it yet. The system tracks deposit collection status separately. If you skip it, you will have no record of what is owed and may face disputes at move-out.
+
+### 5. Not verifying charge template inheritance
+
+After selecting the unit, always review the pre-populated charges. If the charge templates were recently changed at the property level, the amounts shown may be different from what you expect. Verify before confirming.
+
+### 6. Creating duplicate tenant records
+
+Before adding a new tenant, search the existing tenant list. If the person was previously a tenant or prospect, update their existing record instead of creating a new one. Duplicates cause confusion in payment tracking and reporting.
+
+---
+
+## What to do next
+
+With your tenant onboarded, charges will begin generating on the next billing cycle. Learn how billing works in the [Rent Collection & Charges Guide](/real-estate/rent-and-charges), or set up lease tracking and renewals in the [Lease Management Guide](/real-estate/lease-management).

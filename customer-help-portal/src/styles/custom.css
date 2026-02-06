@@ -1,0 +1,164 @@
+/* customer-help-portal/src/styles/custom.css */
+
+/* Material 3 Token Integration for Starlight */
+:root {
+  /* Light Theme Mappings */
+  --mat-sys-primary: #6750a4;
+  --mat-sys-surface: #fffbfe;
+  --mat-sys-surface-container-lowest: #ffffff;
+  --mat-sys-surface-container-low: #f7f2fa;
+  --mat-sys-on-surface: #1c1b1f;
+  --mat-sys-on-surface-variant: #49454f;
+  --mat-sys-outline-variant: #cac4d0;
+
+  /* Overriding Starlight Default Colors (Light) */
+  --sl-color-accent-low: #eaddff;
+  --sl-color-accent: var(--mat-sys-primary);
+  --sl-color-accent-high: #21005d;
+  --sl-color-white: var(--mat-sys-on-surface);
+  --sl-color-gray-1: var(--mat-sys-on-surface-variant);
+  --sl-color-gray-2: #79747e;
+  --sl-color-gray-3: var(--mat-sys-outline-variant);
+  --sl-color-gray-4: #ece6f0;
+  --sl-color-gray-5: var(--mat-sys-surface-container-low);
+  --sl-color-gray-6: var(--mat-sys-surface-container-lowest);
+  --sl-color-black: var(--mat-sys-surface);
+  --sl-color-bg: var(--mat-sys-surface);
+  --sl-color-bg-nav: var(--mat-sys-surface-container-low);
+  --sl-color-bg-sidebar: var(--mat-sys-surface-container-low);
+
+  /* Layout & Aesthetic */
+  --sl-content-width: 50rem;
+  --sl-sidebar-width: 18.75rem;
+  --sl-border-radius: 1rem;
+
+  /* Typography — use system fonts that match the Angular dashboard */
+  --sl-font: 'Roboto', system-ui, -apple-system, sans-serif;
+  --sl-font-mono: 'Roboto Mono', ui-monospace, monospace;
+}
+
+:root[data-theme='dark'] {
+  /* Dark Theme Mappings */
+  --mat-sys-primary: #d0bcff;
+  --mat-sys-surface: #141218;
+  --mat-sys-surface-container-lowest: #0f0d13;
+  --mat-sys-surface-container-low: #1d1b20;
+  --mat-sys-on-surface: #e6e1e5;
+  --mat-sys-on-surface-variant: #cac4d0;
+  --mat-sys-outline-variant: #49454f;
+
+  /* Overriding Starlight Default Colors (Dark) */
+  --sl-color-accent-low: #4f378b;
+  --sl-color-accent: var(--mat-sys-primary);
+  --sl-color-accent-high: #eaddff;
+  --sl-color-white: var(--mat-sys-on-surface);
+  --sl-color-gray-1: var(--mat-sys-on-surface-variant);
+  --sl-color-gray-2: #938f99;
+  --sl-color-gray-3: #49454f;
+  --sl-color-gray-4: #2b2930;
+  --sl-color-gray-5: #211f26;
+  --sl-color-gray-6: var(--mat-sys-surface-container-lowest);
+  --sl-color-black: #0f0d13;
+  --sl-color-bg: var(--mat-sys-surface);
+  --sl-color-bg-nav: var(--mat-sys-surface-container-low);
+  --sl-color-bg-sidebar: var(--mat-sys-surface-container-low);
+}
+
+/* Callout / Aside styling — Material 3 outlined cards */
+.starlight-aside {
+  border-radius: var(--sl-border-radius) !important;
+  border: 1px solid var(--mat-sys-outline-variant) !important;
+}
+
+/* Card components */
+.card {
+  border-radius: var(--sl-border-radius) !important;
+  border: 1px solid var(--mat-sys-outline-variant) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Link cards — subtle hover lift */
+.sl-link-card {
+  border-radius: var(--sl-border-radius) !important;
+  transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+.sl-link-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Code blocks */
+pre {
+  border-radius: var(--sl-border-radius) !important;
+}
+
+/* Content images — styled screenshots */
+.sl-markdown-content img {
+  border-radius: var(--sl-border-radius) !important;
+  border: 1px solid var(--mat-sys-outline-variant);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+  cursor: zoom-in;
+  display: block;
+  margin-block: 1.5rem;
+  max-width: 100%;
+}
+
+.sl-markdown-content img:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+/* Dark mode adjustments */
+:root[data-theme='dark'] .sl-markdown-content img {
+  border-color: var(--mat-sys-outline-variant);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+}
+:root[data-theme='dark'] .sl-markdown-content img:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Steps component — tighter spacing for readability */
+.sl-steps > li {
+  margin-bottom: 1rem;
+}
+
+/* Table improvements */
+table {
+  border-radius: var(--sl-border-radius) !important;
+  overflow: hidden;
+}
+
+th {
+  background: var(--mat-sys-surface-container-low);
+}
+
+/* Splash page hero refinement */
+.hero {
+  padding-block: 3rem;
+}
+
+/* Smooth page transitions */
+main {
+  animation: fadeIn 0.2s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0.9; }
+  to { opacity: 1; }
+}
+
+/* Lightbox overlay */
+.medium-zoom-overlay { z-index: 1000; }
+.medium-zoom-image--opened {
+  z-index: 1001;
+  cursor: default !important;
+  border-color: transparent !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25) !important;
+}
