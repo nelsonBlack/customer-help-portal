@@ -1,0 +1,13 @@
+# Sibling project repos (each has its own git repo)
+analog-meter-project/
+frontend-analog-meter-project/
+realator_backend/
+
+# IDE & tooling
+.playwright-mcp/
+*.code-workspace
+
+# Build artifacts
+src/
+dist/
+node_modules/
