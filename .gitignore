@@ -6,8 +6,12 @@ realator_backend/
 # IDE & tooling
 .playwright-mcp/
 *.code-workspace
+.DS_Store
 
-# Build artifacts
+# Build artifacts & dependencies
 src/
 dist/
 node_modules/
+.astro/
+docs/
+new_data/
