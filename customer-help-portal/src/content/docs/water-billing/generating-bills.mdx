@@ -81,12 +81,12 @@ Water charges are calculated by applying the customer's assigned tariff to their
 
 A customer consumed 32 units with a three-tier residential tariff:
 
-| Tier | Unit range | Rate (KES) | Units in tier | Charge (KES) |
+| Tier | Unit range | Rate | Units in tier | Charge |
 |---|---|---|---|---|
-| Tier 1 | 0--10 | 50.00 | 10 | 500.00 |
-| Tier 2 | 11--20 | 75.00 | 10 | 750.00 |
-| Tier 3 | 21+ | 100.00 | 12 | 1,200.00 |
-| | | | **Total Water** | **2,450.00** |
+| Tier 1 | 0--10 | (Rate A) | 10 | (Rate A × 10) |
+| Tier 2 | 11--20 | (Rate B) | 10 | (Rate B × 10) |
+| Tier 3 | 21+ | (Rate C) | 12 | (Rate C × 12) |
+| | | | **Total Water** | **(Sum of all tiers)** |
 
 The system walks through each tier in order, filling up each band before moving to the next one.
 
@@ -94,11 +94,11 @@ The system walks through each tier in order, filling up each band before moving 
 
 Service charges are added to every bill regardless of consumption. These are the standing charges, meter rental fees, and other fixed costs you configured in [company setup](/water-billing/company-setup/#service-charges).
 
-| Charge | Amount (KES) |
+| Charge | Amount |
 |---|---|
-| Standing charge | 200.00 |
-| Meter rental | 100.00 |
-| **Total Service Charges** | **300.00** |
+| Standing charge | (Your configured amount) |
+| Meter rental | (Your configured amount) |
+| **Total Service Charges** | **(Sum of service charges)** |
 
 ### Penalties (late payment)
 
@@ -107,7 +107,7 @@ Penalties are automatically applied to customers who have overdue balances from 
 | Penalty type | How it works |
 |---|---|
 | **Percentage-based** | A percentage of the overdue balance is added (e.g., 5% of unpaid amount) |
-| **Fixed amount** | A flat fee is added for each overdue invoice (e.g., KES 200 per overdue bill) |
+| **Fixed amount** | A flat fee is added for each overdue invoice |
 
 Penalties only apply after the grace period has elapsed. If a customer pays within the deadline plus grace period, no penalty is added.
 
@@ -119,14 +119,14 @@ If a customer has a credit on their account — from an overpayment, a voided bi
 
 ![Individual water bill detail view](../../../assets/guides/water-bill-detail.png)
 
-| Line item | Amount (KES) |
+| Line item | Amount |
 |---|---|
-| Water charges (32 units) | 2,450.00 |
-| Standing charge | 200.00 |
-| Meter rental | 100.00 |
-| Late payment penalty (5% of KES 1,200 overdue) | 60.00 |
-| Credit (overpayment from last month) | -150.00 |
-| **Total Due** | **2,660.00** |
+| Water charges (32 units) | (Calculated from tariff) |
+| Standing charge | (Your configured amount) |
+| Meter rental | (Your configured amount) |
+| Late payment penalty | (If applicable) |
+| Credit (overpayment from last month) | (If applicable) |
+| **Total Due** | **(Sum of all charges)** |
 
 ## Reviewing bills before sending
 
@@ -173,22 +173,22 @@ Once bills are reviewed and approved, you distribute them to customers.
 
 <Tabs>
   <TabItem label="SMS">
-    The most common distribution method in East Africa. Each customer receives an SMS with:
+    SMS is a common distribution method. Each customer receives an SMS with:
     - Billing period
     - Consumption (units)
     - Total amount due
     - Payment deadline
-    - Paybill number and account details
+    - Payment details (if configured)
 
     **Example SMS:**
     ```
-    NAIROBIWATER Bill for Jan 2025.
-    Meter: WM-2024-00451
-    Units: 32
-    Amount Due: KES 2,660.00
-    Due by: 15-Feb-2025
-    Pay via M-Pesa Paybill 123456
-    Account: ACC-0451
+    [YourCompany] Bill for [Period].
+    Meter: [Meter Number]
+    Units: [Consumption]
+    Amount Due: [Amount]
+    Due by: [Deadline]
+    Pay via [Payment Method]
+    Account: [Account Number]
     ```
 
     :::note
@@ -345,12 +345,12 @@ For mid-cycle connections:
 
 **Example:** A customer connects on the 15th of a 28-day billing cycle.
 
-| Item | Calculation | Amount (KES) |
+| Item | Calculation | Amount |
 |---|---|---|
-| Water charges | 8 units consumed at Tier 1 rate | 400.00 |
-| Standing charge (pro-rated) | KES 200 x (14/28) | 100.00 |
-| Meter rental (pro-rated) | KES 100 x (14/28) | 50.00 |
-| **Total** | | **550.00** |
+| Water charges | 8 units consumed at Tier 1 rate | (Tier 1 rate × 8) |
+| Standing charge (pro-rated) | Standing charge × (14/28) | (Half of standing charge) |
+| Meter rental (pro-rated) | Meter rental × (14/28) | (Half of meter rental) |
+| **Total** | | **(Sum of pro-rated charges)** |
 
 ## Billing checklist
 

@@ -27,7 +27,7 @@ A billing cycle in EasyBiller has four key dates:
 | **Deadline Day** | The day by which payment must be received | `15` (15th of the following month) |
 
 :::tip
-Most utilities in Kenya use a monthly cycle starting on the 1st. If you serve a large area, consider staggering reading days across regions so your field team isn't overwhelmed on day one.
+Most utilities use a monthly cycle. If you serve a large area, consider staggering reading days across regions so your field team isn't overwhelmed on day one.
 :::
 
 ### Setting up your billing cycle
@@ -58,11 +58,7 @@ Changing your billing cycle after you have active customers will affect the next
 
 The grace period is the number of days after the payment deadline during which no penalty is applied. This is important for areas where customers may need extra time to reach a payment point.
 
-| Scenario | Recommended grace period |
-|---|---|
-| Urban area with M-Pesa coverage | 3--5 days |
-| Peri-urban or mixed area | 7 days |
-| Rural area with limited payment access | 10--14 days |
+Consider factors such as payment infrastructure in your service area when setting the grace period. Areas with reliable M-Pesa coverage may need shorter grace periods, while areas with limited payment access may require longer grace periods to accommodate customers.
 
 ## Pricing and tariffs
 
@@ -76,18 +72,18 @@ Each tariff tier has three parts:
 |---|---|---|
 | **Min Units** | Consumption level where this tier starts | `0` |
 | **Max Units** | Consumption level where this tier ends | `10` |
-| **Rate per Unit** | Price charged for each unit within this tier | `50.00` |
+| **Rate per Unit** | Price charged for each unit within this tier | (Your rate) |
 
 When a customer's consumption is calculated, the system walks through the tiers from lowest to highest, applying the appropriate rate to each portion of their usage.
 
 **Example:** A customer uses 25 units with the following tariff:
 
-| Tier | Range | Rate (KES) | Charge |
+| Tier | Range | Rate | Charge |
 |---|---|---|---|
-| Tier 1 | 0--10 units | 50.00 | 500.00 |
-| Tier 2 | 11--20 units | 75.00 | 750.00 |
-| Tier 3 | 21+ units | 100.00 | 500.00 |
-| | | **Total** | **1,750.00** |
+| Tier 1 | 0--10 units | (Rate A) | (Rate A × 10) |
+| Tier 2 | 11--20 units | (Rate B) | (Rate B × 10) |
+| Tier 3 | 21+ units | (Rate C) | (Rate C × 5) |
+| | | **Total** | **(Sum of tiers)** |
 
 ### Creating a tariff
 
@@ -101,7 +97,7 @@ When a customer's consumption is calculated, the system walks through the tiers 
 
 2. Click **Add Tariff**.
 
-3. Enter a descriptive name (e.g., "Residential - Urban" or "Commercial - Nairobi").
+3. Enter a descriptive name (e.g., "Residential - Urban" or "Commercial").
 
 4. Add your first tier: set **Min Units** to `0`, **Max Units** to the upper boundary, and the **Rate per Unit**.
 
@@ -119,38 +115,20 @@ When a customer's consumption is calculated, the system walks through the tiers 
 You can create multiple tariffs for different customer categories. For example, a "Domestic" tariff with lower rates and a "Commercial" tariff with higher rates. Tariffs are assigned at the customer level.
 :::
 
-### Recommended tariff structures
+### Tariff structure examples
 
-<Tabs>
-  <TabItem label="Urban Residential">
-    | Tier | Range (units) | Suggested Rate (KES) |
-    |---|---|---|
-    | Lifeline | 0--6 | 30--40 |
-    | Basic | 7--20 | 50--70 |
-    | Standard | 21--50 | 80--100 |
-    | High Usage | 51+ | 120--150 |
+:::note
+Tariff rates and tier structures are determined by your utility based on your operational costs, regulatory requirements, and customer demographics. The examples below illustrate common tier structures — your actual rates will depend on your company's policies.
+:::
 
-    Urban residential tariffs typically follow WASREB guidelines with a subsidized lifeline tier to ensure basic water access is affordable.
-  </TabItem>
-  <TabItem label="Rural Cooperative">
-    | Tier | Range (units) | Suggested Rate (KES) |
-    |---|---|---|
-    | Basic | 0--10 | 20--35 |
-    | Standard | 11--30 | 40--60 |
-    | High Usage | 31+ | 70--90 |
+Common tariff structures include:
 
-    Rural cooperatives often use simpler, two- or three-tier structures with lower rates reflecting community-based operations.
-  </TabItem>
-  <TabItem label="Commercial">
-    | Tier | Range (units) | Suggested Rate (KES) |
-    |---|---|---|
-    | Base | 0--50 | 80--100 |
-    | Standard | 51--200 | 100--130 |
-    | Heavy | 201+ | 140--180 |
+- **Lifeline or subsidized tier**: A lower rate for minimal consumption to ensure basic water access is affordable
+- **Standard residential tier**: Standard rates for typical household usage
+- **Higher usage tiers**: Rates that increase as consumption rises, encouraging water conservation
+- **Commercial and industrial tiers**: Separate tariff structures for non-residential customers, often with larger consumption bands
 
-    Commercial tariffs start at higher rates and cover larger consumption ranges per tier.
-  </TabItem>
-</Tabs>
+Consult your local regulatory authority for any mandated tariff guidelines that may apply to your utility.
 
 ## Service charges
 
@@ -158,12 +136,14 @@ Service charges are fixed fees that appear on every bill regardless of water con
 
 ### Types of service charges
 
-| Charge type | Description | Typical range (KES) |
-|---|---|---|
-| **Standing charge** | Monthly fixed fee for being connected to the system | 100--500 |
-| **Meter rental** | Monthly charge for meter equipment | 50--200 |
-| **Connection fee** | One-time fee for new connections (can be amortized) | 2,000--10,000 |
-| **Sewerage charge** | Fee for wastewater/sewerage services, if applicable | 50--300 |
+| Charge type | Description |
+|---|---|
+| **Standing charge** | Monthly fixed fee for being connected to the system |
+| **Meter rental** | Monthly charge for meter equipment |
+| **Connection fee** | One-time fee for new connections (can be amortized across billing periods) |
+| **Sewerage charge** | Fee for wastewater/sewerage services, if applicable |
+
+Your utility determines the appropriate amounts for each charge based on your operational costs and policies.
 
 ### Adding a service charge
 
@@ -252,17 +232,11 @@ Start with broad regions and split them later as your customer base grows. It is
 
 ## Currency and localization
 
-EasyBiller supports multiple East African currencies. Your currency setting affects how amounts appear on bills, reports, and payment records.
+EasyBiller supports multiple currencies. Your currency setting affects how amounts appear on bills, reports, and payment records.
 
-### Supported currencies
+### Configuring your currency
 
-| Currency | Code | Symbol | Primary market |
-|---|---|---|---|
-| Kenyan Shilling | KES | KSh | Kenya |
-| Tanzanian Shilling | TZS | TSh | Tanzania |
-| Ugandan Shilling | UGX | USh | Uganda |
-| Rwandan Franc | RWF | RF | Rwanda |
-| US Dollar | USD | $ | International |
+Your administrator can configure the currency during initial setup. The currency symbol will appear on all bills, invoices, reports, and customer-facing communications.
 
 ### Configuring your currency
 
@@ -284,7 +258,7 @@ Changing your currency after you have generated bills is not recommended. Histor
 
 ## SMS notification setup
 
-SMS is the primary communication channel for most water utility customers in East Africa. Configuring SMS lets you send bills, payment confirmations, and overdue reminders directly to customers' phones.
+SMS is a common communication channel for water utility customers. Configuring SMS lets you send bills, payment confirmations, and overdue reminders directly to customers' phones.
 
 ### SMS configuration fields
 
@@ -292,7 +266,7 @@ SMS is the primary communication channel for most water utility customers in Eas
 |---|---|
 | **SMS API Key** | Your API key from your SMS provider (e.g., Africa's Talking) |
 | **SMS Username** | Your account username with the SMS provider |
-| **Sender ID** | The name that appears as the SMS sender (e.g., "NAIROBIWATER") |
+| **Sender ID** | The name that appears as the SMS sender (e.g., your company name) |
 
 <Steps>
 
@@ -307,7 +281,7 @@ SMS is the primary communication channel for most water utility customers in Eas
 </Steps>
 
 :::note
-Sender IDs in Kenya must be registered with the Communications Authority. Work with your SMS provider to register your sender ID before going live. Unregistered sender IDs may be blocked by mobile networks.
+Sender ID registration requirements vary by country. Work with your SMS provider to register your sender ID before going live if required by your local regulations.
 :::
 
 ## Settings reference
@@ -317,7 +291,7 @@ A complete reference of all company configuration fields:
 | Setting | Location | Description | Default |
 |---|---|---|---|
 | Company Name | Company Profile | Your utility's official name | Required |
-| Currency | Company Profile | Billing currency (KES, TZS, UGX, etc.) | KES |
+| Currency | Company Profile | Billing currency | Required |
 | Billing Start Day | Billing Configuration | Day of month billing period starts | 1 |
 | Billing End Day | Billing Configuration | Day of month billing period ends | 28 |
 | Reading Days | Billing Configuration | Days allocated for meter reading | 7 |
@@ -332,46 +306,27 @@ A complete reference of all company configuration fields:
 
 <Tabs>
   <TabItem label="Urban Residential Utility">
-    **Profile:** Serving a town or city with reliable infrastructure and M-Pesa coverage.
+    **Profile:** Serving a town or city with reliable infrastructure and payment coverage.
 
-    | Setting | Recommended value |
-    |---|---|
-    | Billing cycle | 1st to 28th monthly |
-    | Reading days | 5--7 days |
-    | Payment deadline | 15th of following month |
-    | Grace period | 3--5 days |
-    | Tariff tiers | 4 tiers (lifeline, basic, standard, high) |
-    | Service charges | Standing charge + meter rental |
-    | Payment method | M-Pesa (primary) + manual cash |
-    | SMS notifications | Enabled |
+    - Configure a billing cycle that aligns with your reading and collection operations
+    - Enable mobile money as the primary payment method, with manual cash recording as backup
+    - Enable SMS notifications to keep customers informed about their bills
+    - Set up tiered tariffs as required by your utility's policies
   </TabItem>
   <TabItem label="Rural Water Cooperative">
     **Profile:** Community-managed water system with dispersed customers and variable payment infrastructure.
 
-    | Setting | Recommended value |
-    |---|---|
-    | Billing cycle | 1st to 28th monthly |
-    | Reading days | 10--14 days |
-    | Payment deadline | 20th of following month |
-    | Grace period | 10--14 days |
-    | Tariff tiers | 2--3 tiers (basic, standard, high) |
-    | Service charges | Minimal standing charge only |
-    | Payment method | Manual cash (primary) + M-Pesa |
-    | SMS notifications | Enabled (critical for remote areas) |
+    - Allow adequate reading days to accommodate dispersed customer locations
+    - Consider longer grace periods to account for limited payment infrastructure
+    - SMS notifications help reach customers in remote areas
+    - Simpler tariff structures may be easier to administer
   </TabItem>
   <TabItem label="Commercial / Industrial">
     **Profile:** Serving businesses, factories, or institutions with high consumption.
 
-    | Setting | Recommended value |
-    |---|---|
-    | Billing cycle | 1st to 28th monthly |
-    | Reading days | 3--5 days |
-    | Payment deadline | 10th of following month |
-    | Grace period | 3 days |
-    | Tariff tiers | 3 tiers (base, standard, heavy) |
-    | Service charges | Standing charge + sewerage (if applicable) |
-    | Payment method | M-Pesa + bank transfer |
-    | SMS notifications | Enabled + email |
+    - Commercial customers typically require prompt billing and shorter payment windows
+    - Consider enabling email notifications in addition to SMS
+    - Separate tariff categories for different customer types help with accurate billing
   </TabItem>
 </Tabs>
 

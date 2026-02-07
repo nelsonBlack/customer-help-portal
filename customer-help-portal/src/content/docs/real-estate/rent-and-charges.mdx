@@ -15,11 +15,11 @@ Every charge billed to a tenant falls into one of these categories:
 
 | Charge Type | Description | Examples |
 |-------------|-------------|---------|
-| **Rent** | The primary monthly payment for occupying the unit | KES 35,000/month |
-| **Water** | Water usage or fixed water service fee | KES 800/month (fixed) or metered |
-| **Garbage** | Waste collection and disposal | KES 500/month |
-| **Security** | Guard services, CCTV, access control | KES 1,000/month |
-| **Custom** | Any other recurring or one-time charge you define | Parking (KES 3,000), Maintenance (KES 2,000) |
+| **Rent** | The primary monthly payment for occupying the unit | (Your rent amount)/month |
+| **Water** | Water usage or fixed water service fee | Fixed monthly fee or metered |
+| **Garbage** | Waste collection and disposal | (Your garbage fee)/month |
+| **Security** | Guard services, CCTV, access control | (Your security fee)/month |
+| **Custom** | Any other recurring or one-time charge you define | Parking, Maintenance, etc. |
 
 ![Creating a new pricing template](../../../assets/guides/pricing-create-form.png)
 
@@ -42,11 +42,11 @@ Charge amounts are determined by a 3-tier priority system. The system checks eac
 | 2 | **Unit-type** | An amount configured for all units of a certain type (e.g., all 2-Bedroom units) |
 | 3 (lowest) | **Property default** | An amount configured at the property level, applying to all units |
 
-**Practical example:** Your property has a default garbage fee of KES 500. You set an override of KES 700 for 3-Bedroom units. Unit A-301 (a 3-Bedroom) has a special agreement for KES 0. Here is what gets charged:
+**Practical example:** Your property has a default garbage fee. You set a higher override for 3-Bedroom units (larger units produce more waste). Unit A-301 (a 3-Bedroom) has a special agreement for no garbage fee. Here is what gets charged:
 
-- **Studio unit** -- KES 500 (property default, no overrides exist)
-- **Any 3-Bedroom unit** -- KES 700 (unit-type override)
-- **Unit A-301 specifically** -- KES 0 (unit-specific override wins)
+- **Studio unit** -- Property default (no overrides exist)
+- **Any 3-Bedroom unit** -- Unit-type override
+- **Unit A-301 specifically** -- Unit-specific override wins (zero fee)
 
 For a full walkthrough of setting up charge templates, see the [Property & Unit Setup Guide](/real-estate/property-setup#understanding-charge-templates).
 
@@ -103,7 +103,7 @@ For charges outside the normal billing templates:
 
 ## Recording rent payments
 
-EasyBiller supports multiple payment methods. The most common in East Africa is M-Pesa, but you can also record cash, bank transfers, and cheque payments.
+EasyBiller supports multiple payment methods. M-Pesa is a popular option, but you can also record cash, bank transfers, and cheque payments.
 
 <Tabs>
 <TabItem label="M-Pesa (automatic)">
@@ -181,7 +181,7 @@ Go to **Settings > Billing > Late Fees** and configure:
 | **Grace Period** | Number of days after the due date before a penalty applies | 5 days |
 | **Penalty Type** | Fixed amount or percentage of outstanding balance | Percentage |
 | **Penalty Amount** | The fee or rate to apply | 5% of outstanding rent |
-| **Maximum Penalty** | Cap on total accumulated penalties | KES 10,000 |
+| **Maximum Penalty** | Cap on total accumulated penalties | (Your maximum amount) |
 | **Application Frequency** | One-time or recurring (e.g., monthly until paid) | One-time |
 
 ### How penalties are applied

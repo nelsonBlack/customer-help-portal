@@ -205,7 +205,7 @@ The lease is the contractual backbone of the tenant's stay. Here is what each fi
 | **Lease Status** | Set to **Active** when the tenant is moving in. Use **Pending** if the lease is signed but the move-in date is in the future. |
 
 :::caution[Rent amount vs. charge template]
-The rent amount on the lease is the authoritative figure for this tenant. If the charge template says KES 35,000 but you negotiate KES 33,000, enter KES 33,000 on the lease. The system will use the lease amount for billing.
+The rent amount on the lease is the authoritative figure for this tenant. If the charge template has a default rate but you negotiate a different amount, enter the negotiated amount on the lease. The system will use the lease amount for billing.
 :::
 
 ---
@@ -220,10 +220,10 @@ The charges screen shows all templates that will apply to this tenant:
 
 | Charge | Source | Amount |
 |--------|--------|--------|
-| Rent | Lease agreement | KES 33,000 |
-| Garbage | Property default | KES 500 |
-| Security | Property default | KES 1,000 |
-| Water | Unit-type override (2-Bedroom) | KES 800 |
+| Rent | Lease agreement | (Negotiated rate) |
+| Garbage | Property default | (Default amount) |
+| Security | Property default | (Default amount) |
+| Water | Unit-type override (2-Bedroom) | (Override amount) |
 
 Review each line. The **Source** column tells you where the amount is coming from, so you can understand why a particular figure is being used.
 
@@ -268,7 +268,7 @@ Double-check the unit number before confirming. Assigning a tenant to the wrong 
 
 ### 3. Mismatched lease and charge amounts
 
-If you negotiate a rent different from the charge template, make sure the **lease rent amount** reflects the negotiated figure. The lease amount is what the system uses for billing. If the lease says KES 35,000 but you agreed to KES 33,000, the tenant will be overbilled.
+If you negotiate a rent different from the charge template, make sure the **lease rent amount** reflects the negotiated figure. The lease amount is what the system uses for billing. If the lease has the wrong amount, the tenant will be overbilled or underbilled.
 
 ### 4. Forgetting to record the deposit
 

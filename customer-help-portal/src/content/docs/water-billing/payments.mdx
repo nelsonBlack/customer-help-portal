@@ -11,7 +11,7 @@ Getting paid is the whole point. EasyBiller supports both automatic M-Pesa recon
 
 ## M-Pesa payment setup
 
-M-Pesa is the dominant payment method for water utilities in Kenya and increasingly across East Africa. EasyBiller integrates directly with Safaricom's M-Pesa API to automatically match incoming payments to customer accounts.
+M-Pesa is a popular mobile money payment method. EasyBiller integrates directly with the M-Pesa API to automatically match incoming payments to customer accounts.
 
 ### What you need
 
@@ -162,15 +162,15 @@ When a payment is received — whether via M-Pesa or manual entry — the system
 | 4 | Continue until the payment is fully allocated |
 | 5 | If payment exceeds all outstanding invoices, the remainder becomes a credit |
 
-**Example:** A customer pays KES 5,000 and has three unpaid invoices.
+**Example:** A customer pays and has three unpaid invoices.
 
 | Invoice | Amount Due | Payment Applied | Status After |
 |---|---|---|---|
-| January bill | KES 2,200 | KES 2,200 | Paid |
-| February bill | KES 2,660 | KES 2,660 | Paid |
-| March bill | KES 2,450 | KES 140 | Partial (KES 2,310 remaining) |
+| January bill | (Amount A) | (Amount A) | Paid |
+| February bill | (Amount B) | (Amount B) | Paid |
+| March bill | (Amount C) | (Remaining amount) | Partial (balance remaining) |
 
-The KES 5,000 was distributed across invoices chronologically. The March bill shows a partial payment with a remaining balance.
+The payment was distributed across invoices chronologically. The March bill shows a partial payment with a remaining balance.
 
 ## Viewing payment history
 
@@ -239,10 +239,10 @@ If a customer requests a refund of their credit (for example, if they are discon
 For M-Pesa payments, the system sends an automatic SMS confirmation to the customer:
 
 ```
-NAIROBIWATER: Payment received.
-Amount: KES 2,660.00
-Ref: QKL7H2BXYZ
-Balance: KES 0.00
+[YourCompany]: Payment received.
+Amount: [Amount]
+Ref: [TransactionID]
+Balance: [RemainingBalance]
 Thank you for your payment.
 ```
 

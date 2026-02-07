@@ -15,7 +15,7 @@ This guide covers how to set up notification channels, configure triggers, custo
 
 ### SMS via Africa's Talking
 
-SMS is the most reliable way to reach customers in East Africa, where many users have basic phones without email access. EasyBiller integrates with [Africa's Talking](https://africastalking.com/) for SMS delivery.
+SMS is a reliable way to reach customers. EasyBiller integrates with [Africa's Talking](https://africastalking.com/) for SMS delivery.
 
 #### Setting up Africa's Talking
 
@@ -120,10 +120,10 @@ Available placeholders:
 |---|---|---|
 | `{customer_name}` | Customer's full name | Jane Wanjiku |
 | `{account_number}` | Customer's account number | ACC-00452 |
-| `{amount}` | Bill amount or payment amount | KES 1,250.00 |
+| `{amount}` | Bill amount or payment amount | (Formatted amount) |
 | `{due_date}` | Bill due date | 15 Feb 2026 |
 | `{period}` | Billing period | Jan 2026 |
-| `{balance}` | Outstanding balance | KES 3,500.00 |
+| `{balance}` | Outstanding balance | (Formatted balance) |
 | `{company_name}` | Your company name | Maji Water |
 | `{paybill}` | Your M-Pesa paybill number | 123456 |
 | `{meter_number}` | Customer's meter serial number | M-2024-0871 |
@@ -131,8 +131,8 @@ Available placeholders:
 **Example: Bill generated SMS template**
 
 ```
-Dear {customer_name}, your water bill for {period} is KES {amount}.
-Pay via M-Pesa Paybill {paybill}, Acc: {account_number}.
+Dear {customer_name}, your water bill for {period} is {amount}.
+Pay via [Payment Method], Acc: {account_number}.
 Due: {due_date}. {company_name}
 ```
 
@@ -224,7 +224,7 @@ After testing with sample data, generate a bill for a test customer with notific
 | **Wrong API credentials** | Re-enter your Africa's Talking username and API key. Copy them directly from the Africa's Talking dashboard. |
 | **Sender ID not approved** | Remove the Sender ID and test with the default short code. If that works, your Sender ID application may still be pending. |
 | **Africa's Talking balance is zero** | Log in to Africa's Talking and check your balance. Top up to continue sending. |
-| **Phone number format** | Ensure phone numbers include the country code (for example, +254712345678 for Kenya). |
+| **Phone number format** | Ensure phone numbers include the country code (for example, +1234567890). |
 | **Network issues** | Some mobile networks delay or block bulk SMS. Try sending to a different number on a different network. |
 | **Sandbox vs Production** | Make sure you are using production credentials, not sandbox. Sandbox messages only go to sandbox numbers. |
 

@@ -152,12 +152,12 @@ When a tenant is leaving — whether the lease has expired, the tenant is breaki
 
    | Item | Amount |
    |------|--------|
-   | Outstanding rent | KES 5,000 |
-   | Unpaid utilities | KES 1,200 |
-   | Repair deductions | KES 3,500 |
-   | **Total deductions** | **KES 9,700** |
-   | Deposit held | KES 70,000 |
-   | **Refund due to tenant** | **KES 60,300** |
+   | Outstanding rent | (Amount) |
+   | Unpaid utilities | (Amount) |
+   | Repair deductions | (Amount) |
+   | **Total deductions** | **(Sum of above)** |
+   | Deposit held | (Deposit amount) |
+   | **Refund due to tenant** | **(Deposit minus deductions)** |
 
 6. **Close the lease**
 
@@ -292,7 +292,7 @@ Rent escalation handles scheduled rent increases, typically applied at lease ren
 
 A predetermined amount is added to the current rent at each renewal.
 
-**Example:** Current rent is KES 35,000. A fixed escalation of KES 2,000 per year means the new rent is KES 37,000.
+**Example:** If your current rent is 100 units and you apply a fixed escalation of 5 units per year, the new rent becomes 105 units.
 
 **Best for:** Simple residential properties where you want predictable, easy-to-communicate increases.
 
@@ -302,7 +302,7 @@ A predetermined amount is added to the current rent at each renewal.
 
 1. During lease renewal, update the **Rent Amount** field with the new figure.
 
-2. In the **Escalation Notes** field, record the increase for audit purposes (e.g., "Annual escalation: +KES 2,000").
+2. In the **Escalation Notes** field, record the increase for audit purposes (e.g., "Annual escalation: +(amount)").
 
 3. Save the renewed lease.
 
@@ -313,7 +313,7 @@ A predetermined amount is added to the current rent at each renewal.
 
 A percentage of the current rent is added at each renewal.
 
-**Example:** Current rent is KES 35,000. A 10% annual escalation means the new rent is KES 38,500.
+**Example:** If your current rent is 100 units and you apply a 10% annual escalation, the new rent becomes 110 units.
 
 **Best for:** Commercial leases and properties in areas with variable market conditions.
 
@@ -360,9 +360,9 @@ Occasionally, a tenant needs to move to a different unit within the same propert
    | Item | Old unit (A-101) | New unit (B-205) |
    |------|-----------------|-----------------|
    | Unit type | 1-Bedroom | 2-Bedroom |
-   | Rent (from charge template) | KES 22,000 | KES 35,000 |
-   | Garbage | KES 500 | KES 500 |
-   | Water | KES 800 | KES 800 |
+   | Rent (from charge template) | (1-BR rate) | (2-BR rate) |
+   | Garbage | (Same) | (Same) |
+   | Water | (Same) | (Same) |
 
 4. **Adjust the lease terms** if needed:
    - Update the rent amount to reflect the new unit

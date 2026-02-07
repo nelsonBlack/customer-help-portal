@@ -41,7 +41,7 @@ A **property** represents a single physical location you manage — an apartment
    | Field | Description | Example |
    |-------|-------------|---------|
    | **Property Name** | A recognizable name for your team and tenants | Sunrise Apartments |
-   | **Address** | Full physical address | 14 Moi Avenue, Nairobi |
+   | **Address** | Full physical address | 123 Main Street |
    | **Property Type** | Residential or Commercial | Residential |
    | **Features** | Amenities and characteristics (multi-select) | Parking, Security Gate, Borehole, Lift |
 
@@ -123,18 +123,18 @@ The system checks from top to bottom. If it finds a charge at the unit level, it
 
 Imagine you manage **Sunrise Apartments** with the following setup:
 
-- **Property default** garbage fee: KES 500/month
-- **Unit-type override** for 3-Bedroom units: KES 700/month (larger units produce more waste)
-- **Unit-specific override** for unit A-301: KES 0/month (tenant handles their own disposal per special agreement)
+- **Property default** garbage fee: (Default amount)/month
+- **Unit-type override** for 3-Bedroom units: (Higher amount)/month (larger units produce more waste)
+- **Unit-specific override** for unit A-301: Zero/month (tenant handles their own disposal per special agreement)
 
 Here is what each tenant gets charged for garbage:
 
 | Unit | Type | Garbage charge | Why |
 |------|------|---------------|-----|
-| A-101 | 1-Bedroom | KES 500 | Falls back to property default |
-| B-205 | 2-Bedroom | KES 500 | Falls back to property default |
-| C-302 | 3-Bedroom | KES 700 | Unit-type override applies |
-| A-301 | 3-Bedroom | KES 0 | Unit-specific override wins |
+| A-101 | 1-Bedroom | (Default) | Falls back to property default |
+| B-205 | 2-Bedroom | (Default) | Falls back to property default |
+| C-302 | 3-Bedroom | (Higher) | Unit-type override applies |
+| A-301 | 3-Bedroom | Zero | Unit-specific override wins |
 
 </TabItem>
 </Tabs>
@@ -209,42 +209,42 @@ Here are recommended setups for three common property types. Adjust the amounts 
 <Tabs>
 <TabItem label="Residential apartment">
 
-**Property: Sunrise Apartments (Nairobi)**
+**Property: Example Apartments**
 
 | Charge | Property Default | Studio Override | 1-BR Override | 2-BR Override | 3-BR Override |
 |--------|-----------------|----------------|--------------|--------------|--------------|
-| Rent | -- | KES 15,000 | KES 22,000 | KES 35,000 | KES 50,000 |
-| Garbage | KES 500 | -- | -- | -- | KES 700 |
-| Security | KES 1,000 | -- | -- | -- | -- |
-| Water (fixed) | KES 800 | KES 500 | -- | -- | KES 1,200 |
+| Rent | -- | (Your rate) | (Your rate) | (Your rate) | (Your rate) |
+| Garbage | (Default) | -- | -- | -- | (Higher) |
+| Security | (Default) | -- | -- | -- | -- |
+| Water (fixed) | (Default) | (Lower) | -- | -- | (Higher) |
 
 **Why this works:** Rent varies significantly by unit type, so each type gets its own rate. Garbage and security are mostly uniform, so the property default handles them. Only the 3-bedroom garbage fee needs an override because of higher waste volume.
 
 </TabItem>
 <TabItem label="Single-family homes">
 
-**Property: Greenfield Estate (Karen)**
+**Property: Example Estate**
 
 | Charge | Property Default | Notes |
 |--------|-----------------|-------|
 | Rent | -- | Set per-unit (each house is different) |
-| Garbage | KES 1,500 | Same for all houses |
-| Security | KES 3,000 | Shared estate security |
-| Maintenance | KES 2,000 | Common area upkeep |
+| Garbage | (Your rate) | Same for all houses |
+| Security | (Your rate) | Shared estate security |
+| Maintenance | (Your rate) | Common area upkeep |
 
 **Why this works:** In a single-family estate, houses often have different rent amounts, so you set rent at the unit level. Service charges are usually uniform across the estate.
 
 </TabItem>
 <TabItem label="Commercial unit">
 
-**Property: Metro Business Park (Industrial Area)**
+**Property: Example Business Park**
 
 | Charge | Property Default | Shop Override | Office Override | Warehouse Override |
 |--------|-----------------|--------------|----------------|-------------------|
-| Rent | -- | KES 45,000 | KES 60,000 | KES 80,000 |
-| Service charge | KES 5,000 | -- | KES 8,000 | -- |
-| Parking | KES 3,000 | -- | -- | KES 0 (included) |
-| Water | KES 2,000 | -- | -- | KES 5,000 |
+| Rent | -- | (Your rate) | (Your rate) | (Your rate) |
+| Service charge | (Default) | -- | (Higher) | -- |
+| Parking | (Default) | -- | -- | Included |
+| Water | (Default) | -- | -- | (Higher) |
 
 **Why this works:** Commercial properties have diverse unit types with very different needs. Warehouses use more water and include parking in the rent. Offices pay a higher service charge for shared facilities.
 
